@@ -18,3 +18,9 @@ Route::get('/', function () {
 });
 
 Route::get('test', 'API\DemoAPIController@test');
+
+Route::get('response', 'API\DemoAPIController@returnResponse');
+
+Route::any('{slug}', function () {
+    return view('not_found');
+});

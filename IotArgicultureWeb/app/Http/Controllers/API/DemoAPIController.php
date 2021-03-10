@@ -13,7 +13,14 @@ use App\Http\Controllers\AppBaseController;
 class DemoAPIController extends AppBaseController
 {
 
-    public function test() {
+    public function test() 
+    {
         return view('welcome');
     }
+
+    public function returnResponse() 
+    {
+        return $this->sendResponse('data is null', 'messenger');
+    }
+
 }
