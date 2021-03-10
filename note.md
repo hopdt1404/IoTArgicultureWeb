@@ -46,7 +46,7 @@
     - Xin FarmID cho gateway mới
     - Đăng nhập, sau khi đăng nhập gateway mới sẽ được nhìn thấy bởi user sở hữu
     - Người dùng sẽ chọn thay thế gateway nay thay cho 1 gateway cũ
-    - server xóa gateway mới, và gửi FarmID của gateway cũ cho gateway mới để gateway mới lưu lại
+    - server xóa gateway cũ, và gửi FarmID của gateway cũ cho gateway mới để gateway mới lưu lại
     - Cách 2: Cấu  hình trực tiếp farmID trên gateway: nếu farmID được set không có trong db, hoặc có trong db nhưng đang có 1 gateway khác dùng farmID đó thì sẽ lỗi
   - Thay thế Gateway cũ bằng gateway mới (đã có farmID từ trước)
     - xóa farmID ở gateway mới và làm như chưa có FarmID
@@ -68,7 +68,7 @@
 - Khi thêm 1 Farm vào thì mặc định tạo 1 plot
 
 ## Vấn đề với Device
-- DeviceId sẽ dựa trên EOJ của thiết bị
+- DeviceId sẽ dựa trên EOJ (End of Job) của thiết bị
 - DeviceId cần không bị lặp: cấu hình bằng tay có thể bị lặp, cấu hình tự động (sẽ phát triển sau)
 - 
 
@@ -96,6 +96,9 @@
 
 
 ## Quy định cho gói tin json lưu trữ dư liệu cảm biến trên đường truyền MQTT
+** MQTT - Message Queue Telemetry Transport 
+
+additional: https://smartfactoryvn.com/technology/internet-of-things/giao-thuc-mqtt-la-gi-nhung-ung-dung-cua-mqtt-nhu-the-nao/
 - airTemperature
 - airHumidity
 - soilTemperature
