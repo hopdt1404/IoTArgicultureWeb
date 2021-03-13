@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\Controller;
 
 /**
  * Class DemoAPIController
@@ -10,17 +11,19 @@ use App\Http\Controllers\AppBaseController;
  */
 
 
-class DemoAPIController extends AppBaseController
+class DemoAPIController extends Controller
 {
 
-    public function test() 
+    public function test()
     {
         return view('welcome');
     }
 
-    public function returnResponse() 
+    public function returnResponse()
     {
-        return $this->sendResponse('data is null', 'messenger');
+        return response()->json([
+            'hello' => "valuse"
+        ]);
     }
 
 }

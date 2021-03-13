@@ -6,11 +6,11 @@
 
         <title>Laravel</title>
 
-       
+
     </head>
     <body>
         <div id="app">
-            Hello
+            <main-app></main-app>
         </div>
     </body>
 </html>
