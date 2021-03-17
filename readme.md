@@ -1,7 +1,8 @@
 ###Link: demo project
+- https://github.com/cretueusebiu/laravel-vue-spa (ok)
 
-- https://github.com/Ksabeel/Mini-Project-with-laravel-and-vue-js (Error)
-- https://github.com/cretueusebiu/laravel-vue-spa (Doing)
+###### Mutations
+https://viblo.asia/p/vuex-va-vi-du-don-gian-GrLZDpzgZk0
 
 
 ###Document:

@@ -17,6 +17,8 @@ export default {
   beforeCreate() {
   },
   async created() {
+    let data = await this.demoCallAPIBackend();
+    console.log(data);
   },
   beforeMount() {
   },
@@ -33,13 +35,13 @@ export default {
 
   data() {
     return {
-      
+
     }
 
   },
   methods: {
     ...mapActions({
-
+      demoCallAPIBackend: 'demo/demoCallAPIBackend',
     }),
 
   },

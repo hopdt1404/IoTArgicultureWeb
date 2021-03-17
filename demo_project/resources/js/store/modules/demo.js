@@ -21,9 +21,10 @@ export const actions = {
   async demoCallAPIBackend({commit, dispatch}, info) {
     try {
       const data = await axios.get('/api/test')
-      commit(types.ACTION_SUCCESS, {data: data});
+      // commit(types.ACTION_SUCCESS, {data: data});
     } catch (e) {
       commit(types.ACTION_ERROR, info);
     }
   }
 };
+
