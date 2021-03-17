@@ -16,6 +16,9 @@
             <a class="nav-link" href="#">Link</a>
           </li> -->
         </ul>
+        <ul>
+          <router-link :to="{name: 'test-page'}" >Test Page</router-link>
+        </ul>
 
         <ul class="navbar-nav ml-auto">
           <!-- Authenticated -->
