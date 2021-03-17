@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('test', 'API\DemoAPIController@test');
+
+Route::get('response', 'API\DemoAPIController@returnResponse');
+
+Route::any('{slug}', function () {
+    return view('not_found');
+});
