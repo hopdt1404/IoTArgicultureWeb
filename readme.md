@@ -13,7 +13,7 @@ https://viblo.asia/p/vuex-va-vi-du-don-gian-GrLZDpzgZk0
     - Laravel 7.x:
 
 + Video: become full stack developer
-    - Link: https://www.youtube.com/watch?v=NMTEfaPEYB8&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=2
+    - Link: https://www.youtube.com/watch?v=uInnUVqIIWM&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=6
     - Current time: 23:34
 
 - php artisan serve --port=numberPort

@@ -14,7 +14,16 @@ export default [
     name: 'test-page',
     component: () => import('../pages/test/Test'),
   },
-
+  {
+    path: '/hooks',
+    name: 'hooks',
+    component: () => import('../components/pages/basic/Hooks'),
+  },
+  {
+    path: '/methods',
+    name: 'methods',
+    component: () => import('../components/pages/basic/Methods'),
+  },
   {
     path: '/login',
     name: 'login',

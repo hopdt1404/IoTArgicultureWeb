@@ -9,6 +9,10 @@ mix
   .sass('resources/sass/app.scss', 'public/dist/css')
 
   .disableNotifications()
+mix.styles([
+  'public/dist/css/main.css',
+  'public/dist/css/grid.min.css',
+], 'public/dist/css/app.css');
 
 if (mix.inProduction()) {
   mix
