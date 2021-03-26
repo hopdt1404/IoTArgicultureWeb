@@ -2,60 +2,6 @@
   <div>
     <div class="content-fluid">
       <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-3">
-            <div class="_1adminOverveiw_card _box_shadow _border_radious _mar_b30 _1adminOverveiw_bg_one">
-              <div class="_1adminOverveiw_card_left">
-                <p class="_1adminOverveiw_card_left_num">3</p>
-
-                <p class="_1adminOverveiw_card_left_title">Today's News</p>
-              </div>
-              <div class="_1adminOverveiw_card_right">
-                <Icon type="ios-paper" />
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-3">
-            <div class="_1adminOverveiw_card _box_shadow _border_radious _mar_b30 _1adminOverveiw_bg_two">
-              <div class="_1adminOverveiw_card_left">
-                <p class="_1adminOverveiw_card_left_num">29</p>
-
-                <p class="_1adminOverveiw_card_left_title">Total News</p>
-              </div>
-              <div class="_1adminOverveiw_card_right">
-                <Icon type="ios-paper-outline" />
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-3">
-            <div class="_1adminOverveiw_card _box_shadow _border_radious _mar_b30 _1adminOverveiw_bg_two">
-              <div class="_1adminOverveiw_card_left">
-                <p class="_1adminOverveiw_card_left_num">29</p>
-
-                <p class="_1adminOverveiw_card_left_title">Features News</p>
-              </div>
-              <div class="_1adminOverveiw_card_right">
-                <Icon type="md-copy" />
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-3">
-            <div class="_1adminOverveiw_card _box_shadow _border_radious _mar_b30 _1adminOverveiw_bg_two">
-              <div class="_1adminOverveiw_card_left">
-                <p class="_1adminOverveiw_card_left_num">29</p>
-
-                <p class="_1adminOverveiw_card_left_title">Card News</p>
-              </div>
-              <div class="_1adminOverveiw_card_right">
-                <Icon type="md-list-box" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
         <div class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20">
           <p class="_title0">Recent News</p>
 
@@ -195,7 +141,7 @@
       </div>
       <!--========= HEADER ==========-->
     </div>
-
+    <router-view></router-view>
     <div class="top-right links">
       <template v-if="authenticated">
         <router-link :to="{ name: 'home' }">
@@ -225,7 +171,6 @@
 
 
     </div>
-    <router-view></router-view>
   </div>
 </template>
 

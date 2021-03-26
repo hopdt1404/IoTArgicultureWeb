@@ -15,6 +15,16 @@ export default [
     component: () => import('../pages/test/Test'),
   },
   {
+    path: '/home',
+    name: 'home',
+    component: () => import('../pages/home'),
+  },
+  {
+    path: '/tags',
+    name: 'tags',
+    component: () => import('../pages/Tags'),
+  },
+  {
     path: '/hooks',
     name: 'hooks',
     component: () => import('../components/pages/basic/Hooks'),
@@ -58,12 +68,6 @@ export default [
     path: '/email/resend',
     name: 'verification.resend',
     component: page('auth/verification/resend.vue')
-  },
-
-  {
-    path: '/home',
-    name: 'home',
-    component: page('home.vue')
   },
 
   {

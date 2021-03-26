@@ -3,7 +3,12 @@ import store from '~/store'
 import router from '~/router'
 import i18n from '~/plugins/i18n'
 import App from '~/components/App'
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
+import VueRouter from 'vue-router';
 
+Vue.use(VueRouter);
+Vue.use(ViewUI);
 import '~/plugins'
 import '~/components'
 
