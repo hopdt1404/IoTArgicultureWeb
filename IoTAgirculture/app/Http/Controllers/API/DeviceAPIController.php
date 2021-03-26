@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Database\Eloquent\Model;
+
+
+use App\Http\Controllers\AppBaseController;
+use App\Models\Device;
+use Illuminate\Http\Request;
 
 /**
  * Class AdvertisementManagement
@@ -10,8 +14,20 @@ use Illuminate\Database\Eloquent\Model;
  *
  */
 
-class DeviceAPIController extends Model
+class DeviceAPIController extends AppBaseController
 {
+    var $table = 'devices';
+    var $model = null;
+
+    public function __construct(Device $device)
+    {
+        $this->model = $device;
+    }
+
+    public function index(Request $request) {
+        return response()->json(["Controller" => "DeviceAPIController", "method" => 'index']);
+    }
+
 
 }
 

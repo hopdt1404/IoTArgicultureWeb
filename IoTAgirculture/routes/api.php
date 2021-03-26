@@ -46,4 +46,5 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
 });
 
-Route::resource('user', \App\Http\Controllers\API\UserAPIController::class);
+Route::resource('/user', 'UserAPIController');
+Route::resource('/device', 'DeviceAPIController');

@@ -35,8 +35,7 @@ class UserAPIController extends Controller
     public function store(Request $request) {
 //        return response()->json(["Controller" => "UserAPIController", "method" => 'post']);
         return response()->json(
-            ["Controller" => "UserAPIController", "method" => 'post'],
-            422);
+            ["Controller" => "UserAPIController", "method" => 'post']);
     }
 
 

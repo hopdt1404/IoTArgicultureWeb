@@ -32,7 +32,7 @@ export default [
   {
     path: '/devices',
     name: 'devices',
-    component: () => import('../pages/user/Index'),
+    component: () => import('../pages/device/Index'),
   },
   {
     path: '/hooks',

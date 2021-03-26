@@ -19,7 +19,7 @@ export default {
 
   },
   async created() {
-    let dataPost = await this.callApi('post', '/api/device', {id: 123});
+    let dataPost = await this.callApi('get', '/api/device');
 
     console.log(dataPost);
     if (dataPost.status === 200) {
