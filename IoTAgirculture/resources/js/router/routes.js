@@ -25,6 +25,16 @@ export default [
     component: () => import('../pages/Tags'),
   },
   {
+    path: '/users',
+    name: 'users',
+    component: () => import('../pages/user/Index'),
+  },
+  {
+    path: '/devices',
+    name: 'devices',
+    component: () => import('../pages/user/Index'),
+  },
+  {
     path: '/hooks',
     name: 'hooks',
     component: () => import('../components/pages/basic/Hooks'),

@@ -15,6 +15,9 @@ https://viblo.asia/p/vuex-va-vi-du-don-gian-GrLZDpzgZk0
 + Video: become full stack developer
     - Link: https://www.youtube.com/watch?v=X08Y_8DkRNc&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=8
     - Current time: 23:34
+  
++ Axios: Doc
+  https://github.com/axios/axios
 
 - php artisan serve --port=numberPort
 - sudo npm install
