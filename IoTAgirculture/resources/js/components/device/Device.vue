@@ -17,16 +17,31 @@ export default {
   },
   methods() {
 
+
   },
   async created() {
-    let dataPost = await this.callApi('get', '/api/device');
+    let dataGet = await this.callApi('get', '/api/device');
+    console.log('dataGet');
+    console.log(dataGet);
 
+    let paramGet = {
+      'name': 'A'
+    };
+    let dataGetParams = await this.callApi('get', '/api/device', paramGet);
+    console.log('dataGetParams');
+    console.log(dataGetParams);
+
+    let dataPost = await this.callApi('post', '/api/device', paramGet);
+    console.log('dataPostParams');
     console.log(dataPost);
-    if (dataPost.status === 200) {
-      console.log('dataPost.status === 200');
-    } else {
-      console.log('Error dataPost.status === ' + dataPost.status);
-    }
+
+    let deviceId = 1;
+    let bodyData = {
+      status : '521'
+    };
+    let dataUpdate = await this.callApi('put', `/api/device/${deviceId}`, bodyData);
+    console.log('dataUpdate');
+    console.log(dataUpdate);
   },
 
 }
