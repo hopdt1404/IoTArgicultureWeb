@@ -8,11 +8,14 @@ import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 import VueRouter from 'vue-router';
 import common from './common';
+import Vuesax from 'vuesax';
+import 'vuesax/dist/vuesax.css'
 
 Vue.mixin(common);
 
 Vue.use(VueRouter);
 Vue.use(ViewUI);
+Vue.use(Vuesax);
 import '~/plugins'
 import '~/components'
 
@@ -25,5 +28,5 @@ new Vue({
   i18n,
   store,
   router,
-  ...App
+  ...App,
 })

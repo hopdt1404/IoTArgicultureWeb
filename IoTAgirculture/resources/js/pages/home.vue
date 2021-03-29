@@ -1,7 +1,6 @@
 <template>
   <div>
     <card :title="$t('home')">
-      {{ $t('you_are_logged_in') }}
     </card>
 
   </div>

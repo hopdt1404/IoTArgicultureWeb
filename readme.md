@@ -14,10 +14,14 @@ https://viblo.asia/p/vuex-va-vi-du-don-gian-GrLZDpzgZk0
 
 + Video: become full stack developer
     - Link: https://www.youtube.com/watch?v=X08Y_8DkRNc&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=8
-    - Current time: 16:00
+    - Current time: 18:00
   
 + Axios: Doc
   https://github.com/axios/axios
+  
++ UI
+  https://lusaxweb.github.io/vuesax/development/#use
+ https://www.iviewui.com/components/icon-en
 
 - php artisan serve --port=numberPort
 - sudo npm install
@@ -31,4 +35,7 @@ https://viblo.asia/p/vuex-va-vi-du-don-gian-GrLZDpzgZk0
 ### Postman
 Content-Type: application/json
 X-Requested-With: XMLHttpRequest
+
+:Access Token
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODIwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYxNjg4NzU3OSwiZXhwIjoxNjE2OTczOTc5LCJuYmYiOjE2MTY4ODc1NzksImp0aSI6IjlEWURjMUFCN2VEbWRtdUMiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.WEFGeOGG_FgIV_JgDHkyXLPaw8XBegUKYEtmITy8jko
 
