@@ -161,24 +161,9 @@
           <h3 style="text-align:center;">Logo Image</h3>
           <!--<img src="/img/logo.jpg" style="width: 108px;margin-left: 68px;"/>-->
         </div>
-
+        <main-navbar />
         <!--~~~~~~~~ MENU CONTENT ~~~~~~~~-->
-        <div class="_1side_menu_content">
-          <div class="_1side_menu_img_name">
-            <!-- <img class="_1side_menu_img" src="/pic.png" alt="" title=""> -->
-            <p class="_1side_menu_name">Admin</p>
-          </div>
 
-          <!--~~~ MENU LIST ~~~~~~-->
-          <div class="_1side_menu_list">
-            <ul class="_1side_menu_list_ul">
-              <li><router-link to="/"><a><Icon type="ios-speedometer" /> Dashboard</a></router-link> </li>
-              <li><router-link to="/tags"><a><Icon type="ios-speedometer" /> Tags</a></router-link></li>
-              <li><router-link to="/users"><a><Icon type="ios-speedometer" /> User</a></router-link></li>
-              <li><router-link to="/devices"><a><Icon type="ios-speedometer" /> Devices</a></router-link></li>
-            </ul>
-          </div>
-        </div>
       </div>
       <!--========== ADMIN SIDE MENU ========-->
 
@@ -232,9 +217,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
+import MainNavbar from "../components/layouts/navbar/MainNavbar";
 
 export default {
+  components: {
+    MainNavbar,
+  },
   layout: 'basic',
 
   metaInfo () {

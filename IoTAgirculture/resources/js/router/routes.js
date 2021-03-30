@@ -20,9 +20,9 @@ export default [
     component: () => import('../pages/home'),
   },
   {
-    path: '/tags',
-    name: 'tags',
-    component: () => import('../pages/Tags'),
+    path: '/farms',
+    name: 'farms',
+    component: () => import('../pages/Farm/Index'),
   },
   {
     path: '/users',

@@ -13,14 +13,13 @@ https://viblo.asia/p/vuex-va-vi-du-don-gian-GrLZDpzgZk0
     - Laravel 7.x:
 
 + Video: become full stack developer
-    - Link: https://www.youtube.com/watch?v=X08Y_8DkRNc&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=8
-    - Current time: 18:00
+    - Link: https://www.youtube.com/watch?v=X08Y_8DkRNc&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=10
+    - Current time: 24:00
   
 + Axios: Doc
   https://github.com/axios/axios
   
 + UI
-  https://lusaxweb.github.io/vuesax/development/#use
  https://www.iviewui.com/components/icon-en
 
 - php artisan serve --port=numberPort
