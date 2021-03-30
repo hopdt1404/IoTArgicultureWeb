@@ -10,7 +10,6 @@ import VueRouter from 'vue-router';
 import common from './common';
 import Vuesax from 'vuesax';
 import 'vuesax/dist/vuesax.css';
-import '@ocrv/vue-tailwind-pagination/styles';
 
 Vue.mixin(common);
 

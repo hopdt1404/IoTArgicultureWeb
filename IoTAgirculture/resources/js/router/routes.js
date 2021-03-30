@@ -22,7 +22,7 @@ export default [
   {
     path: '/farms',
     name: 'farms',
-    component: () => import('../pages/Farm/Index'),
+    component: () => import('../pages/farm/Index'),
   },
   {
     path: '/users',

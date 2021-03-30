@@ -14,6 +14,7 @@ https://viblo.asia/p/vuex-va-vi-du-don-gian-GrLZDpzgZk0
 
 + Video: become full stack developer
     - Link: https://www.youtube.com/watch?v=X08Y_8DkRNc&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=10
+    - FrontEnd Call Backend youtube.com/watch?v=eQ2OPuDsnoE&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=9
     - Current time: 24:00
   
 + Axios: Doc
