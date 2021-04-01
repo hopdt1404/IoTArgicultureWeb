@@ -39,3 +39,9 @@ X-Requested-With: XMLHttpRequest
 :Access Token
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODIwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYxNjg4NzU3OSwiZXhwIjoxNjE2OTczOTc5LCJuYmYiOjE2MTY4ODc1NzksImp0aSI6IjlEWURjMUFCN2VEbWRtdUMiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.WEFGeOGG_FgIV_JgDHkyXLPaw8XBegUKYEtmITy8jko
 
+
+## Import all sass in file resource/sass/main.scss
+
+Doing in --
+1: resource/src/main.js
+2: globalComponents.js 

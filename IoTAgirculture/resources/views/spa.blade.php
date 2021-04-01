@@ -18,7 +18,7 @@ $config = [
 </head>
 <body>
   <div id="app"></div>
-
+  <h1>Delete this file later</h1>
   {{-- Global configuration object --}}
   <script>
     window.config = @json($config);
