@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store/index'
+import store from './store/store'
 import './registerServiceWorker'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -14,6 +14,9 @@ import 'material-icons/iconfont/material-icons.scss'
 
 Vue.use(Vuesax)
 Vue.use(ElementUI, { locale })
+
+import auth from './auth.js';
+window.auth = auth;
 
 Vue.config.productionTip = false
 

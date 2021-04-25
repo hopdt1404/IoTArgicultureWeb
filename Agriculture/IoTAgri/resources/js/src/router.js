@@ -36,6 +36,6 @@ const constantRouterMap = [
 
 export default new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: 'app',
   routes: constantRouterMap
 })
