@@ -15,6 +15,7 @@
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",
+    "laravel-mix": "^6.0.18",
     "material-icons": "^0.3.0",
     "popper.js": "^1.16.1",
     "register-service-worker": "^1.5.2",
