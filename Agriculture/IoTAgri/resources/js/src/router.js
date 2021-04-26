@@ -4,7 +4,7 @@ import Layout from './views/layout/index.vue'
 
 Vue.use(Router)
 
-const constantRouterMap = [
+const routes = [
   {
     path: '/',
     name: '',
@@ -13,7 +13,7 @@ const constantRouterMap = [
       {
         path: '',
         name: 'home',
-        component: () => import('./views/Home.vue')
+        component: () => import('./views/home/Index')
       }
     ]
   },
@@ -32,10 +32,10 @@ const constantRouterMap = [
       }
     ]
   }
-]
+];
 
 export default new Router({
   mode: 'history',
   base: 'app',
-  routes: constantRouterMap
-})
+  routes: routes
+});
