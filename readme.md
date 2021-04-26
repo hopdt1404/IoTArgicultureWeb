@@ -43,5 +43,6 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODIwMFw
 ## Import all sass in file resource/sass/main.scss
 
 Doing in --
-1: resource/src/main.js
-2: globalComponents.js 
+
+- laravelgenerator: 
+https://www.infyom.com/open-source/laravelgenerator/docs/7.0/installation
