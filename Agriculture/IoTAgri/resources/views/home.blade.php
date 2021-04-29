@@ -1,10 +1,12 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row">
-
-
-    </div>
-</div>
-@endsection
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="/js/src/app.js"></script>
+</body>
+</html>

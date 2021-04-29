@@ -14,9 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+/*  Start code to work with router vuejs
+ * Source: https://viblo.asia/p/laravel-vuejs-vue-router-63vKjGXRZ2R
+ * date: 29/04/2021
+ * author hopdt
+ *
+*/
+//Route::view('login', 'auth.login');
+Route::view('/{any}', 'home')
+    ->where('any', '.*');
+
+/* End code work with router vuejs */
+
+
 
 //Auth::routes();
 
