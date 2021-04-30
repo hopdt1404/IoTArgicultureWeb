@@ -6,15 +6,13 @@ import Layout from './src/components/layouts/main'
 import Home from './src/views/home/index'
 import User from './src/views/user/index'
 import Farm from './src/views/farm/index'
+import Device from './src/views/device/index'
+import Plant from './src/views/plant/index'
+import SettingAgriculture from './src/views/setting_agriculture/index'
 import Methods from './src/components/methods/index'
 import Hooks from './src/components/hooks/index'
 
 const routes = [
-    {
-        path: '',
-        name: 'layout',
-        component: Layout
-    },
     {
         path: '/home',
         name: 'home',
@@ -31,6 +29,21 @@ const routes = [
         component: Farm
     },
     {
+        path : '/device',
+        name: 'device',
+        component: Device
+    },
+    {
+        path : '/plant',
+        name: 'plant',
+        component: Plant
+    },
+    {
+        path : '/setting_agriculture',
+        name: 'setting_agriculture',
+        component: SettingAgriculture
+    },
+    {
         path : '/hooks',
         name: 'hooks',
         component: Hooks
@@ -40,6 +53,7 @@ const routes = [
         name: 'methods',
         component: Methods
     }
+
 ]
 
 export default new Router({

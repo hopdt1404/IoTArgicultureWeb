@@ -21,7 +21,11 @@
     },
     "dependencies": {
         "@vue/cli": "^4.5.12",
+        "bootstrap": "^4.6.0",
+        "bootstrap-vue": "^2.21.2",
+        "jquery": "^3.6.0",
         "node-sass": "^4.14.1",
+        "popper.js": "^1.16.1",
         "vue": "^2.6.12",
         "vue-router": "^3.5.1"
     }
