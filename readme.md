@@ -49,5 +49,5 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODIwMFw
 
 Doing in --
 
-- laravelgenerator: 
+### Laravel Generator: 
 https://www.infyom.com/open-source/laravelgenerator/docs/7.0/installation

@@ -1,9 +1,8 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// SCSS Layout
+// Variables
+@import 'variables';
 
-@import "bootstrap_vue_custome_style/bootstrap_vue_custome_style";
-
-@import "layouts/navbar";
-@import "images/image";
-
-@import "pages/home";
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
