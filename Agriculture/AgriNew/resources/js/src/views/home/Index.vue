@@ -156,3 +156,11 @@
             </div>
     </div>
 </template>
+
+<script>
+export default {
+    async created() {
+        let data = await this.callApi();
+    }
+}
+</script>
