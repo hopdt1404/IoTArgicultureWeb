@@ -1,8 +1,9 @@
 require('./bootstrap');
 require('./../css/main.css')
 
-
+import store from './src/store/store';
 window.Vue = require('vue')
+Vue.mixin(store);
 
 import router from './router'
 

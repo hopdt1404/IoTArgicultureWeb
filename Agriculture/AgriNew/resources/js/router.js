@@ -3,12 +3,12 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Layout from './src/components/layouts/main'
-import Home from './src/views/home/index'
-import User from './src/views/user/index'
-import Farm from './src/views/farm/index'
-import Device from './src/views/device/index'
-import Plant from './src/views/plant/index'
-import SettingAgriculture from './src/views/setting_agriculture/index'
+import Home from './src/views/home/Index'
+import User from './src/views/user/Index'
+import Farm from './src/views/farm/Index'
+import Device from './src/views/device/Index'
+import Plant from './src/views/plant/Index'
+import SettingAgriculture from './src/views/setting_agriculture/Index'
 import Methods from './src/components/methods/index'
 import Hooks from './src/components/hooks/index'
 

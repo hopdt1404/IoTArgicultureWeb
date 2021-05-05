@@ -25,15 +25,15 @@
 <!--                            </li>-->
 
 
-                            <li><router-link to="home"><Icon type="ios-speedometer" /> Home</router-link></li>
-                            <li><router-link to="user"><Icon type="ios-speedometer" /> User</router-link></li>
-                            <li><router-link to="farm"><Icon type="ios-speedometer" /> Farm</router-link></li>
-                            <li><router-link to="device"><Icon type="ios-speedometer" /> Device</router-link></li>
-                            <li><router-link to="plant"><Icon type="ios-speedometer" /> Plant</router-link></li>
-                            <li><router-link to="setting-agriculture"><Icon type="ios-speedometer" /> Setting Agriculture</router-link></li>
+                            <li><router-link to="home"><Icon type="md-home" /> Home</router-link></li>
+                            <li><router-link to="user"><Icon type="md-contact" /> User</router-link></li>
+                            <li><router-link to="farm"><Icon type="ios-map" /> Farm</router-link></li>
+                            <li><router-link to="device"><Icon type="md-hammer" /> Device</router-link></li>
+                            <li><router-link to="plant"><Icon type="ios-snow" /> Plant</router-link></li>
+                            <li><router-link to="setting-agriculture"><Icon type="ios-settings" /> Setting Agriculture</router-link></li>
 
+                            <li><a href="/logout"><Icon type="md-arrow-back" /> Logout</a></li>
 
-                            <li><a href="/logout"><Icon type="ios-speedometer" /> Logout</a></li>
                         </ul>
                     </div>
                 </div>
