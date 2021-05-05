@@ -39,8 +39,8 @@ const routes = [
         component: Plant
     },
     {
-        path : '/setting_agriculture',
-        name: 'setting_agriculture',
+        path : '/setting-agriculture',
+        name: 'setting-agriculture',
         component: SettingAgriculture
     },
     {

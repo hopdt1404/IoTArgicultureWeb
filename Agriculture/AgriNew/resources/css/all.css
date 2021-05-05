@@ -1,0 +1,9 @@
+@import "main.css";
+@import "grid.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
