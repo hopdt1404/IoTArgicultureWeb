@@ -3126,3 +3126,18 @@ i.cross_icon{
 .center_button{
     margin-top: 10px;
 }
+
+/*
+ * All my css
+ */
+
+/*
+ * Common css
+ */
+.dialog-item {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+.input-title {
+
+}
