@@ -19,18 +19,43 @@
                         <div class="dialog-item">
                             <b-row>
                                 <b-col cols="12">
-                                    <lable class="input-title" for="name">Name</lable>
+                                    <label class="input-title" for="name">Name</label>
                                 </b-col>
                                 <b-col cols="12">
-                                    <Input id="name" v-model="farmName" placeholder="Enter something..." style="width: 100%" />
+                                    <Input id="name" v-model="name" placeholder="Enter something..." style="width: 100%" />
                                 </b-col>
                             </b-row>
                         </div>
-                        <div>
+                        <div class="dialog-item">
                             <b-row>
-                                <b-col cols="12">Name</b-col>
+                                <b-col class="" cols="12">
+                                    <label class="input-title" for="area">Area</label>
+                                </b-col>
                                 <b-col cols="12">
-                                    <Input v-model="farmName" placeholder="Enter something..." style="width: 100%" />
+                                    <Input id="area" v-model="area" type="number" placeholder="Enter something..." style="width: 100%" />
+                                </b-col>
+                            </b-row>
+                        </div>
+                        <div class="dialog-item">
+                            <b-row>
+                                <b-col class="" cols="12">
+                                    <label class="input-title" for="status">Status</label>
+                                </b-col>
+                                <b-col cols="12">
+                                    <RadioGroup id="status" v-model="status">
+                                        <Radio label="activate">
+                                            <Icon type="logo-apple"></Icon>
+                                            <span>Activate</span>
+                                        </Radio>
+                                        <Radio label="deactivate">
+                                            <Icon type="logo-android"></Icon>
+                                            <span>Deactivate</span>
+                                        </Radio>
+                                        <Radio label="maintenance">
+                                            <Icon type="logo-windows"></Icon>
+                                            <span>Maintain</span>
+                                        </Radio>
+                                    </RadioGroup>
                                 </b-col>
                             </b-row>
                         </div>
@@ -47,26 +72,32 @@
 
 
 <script>
+import globalProperties from "../../assets/globalProperties/globalProperties";
 export default {
+    components: {
+        globalProperties
+    },
 
     data() {
         return {
             modal: false,
-            farmName: '',
+            name: '',
             area: '',
             status: '',
             farm_type_id: ''
         }
     },
      created() {
-
+         console.log()
     },
     methods: {
+
         async save() {
+            this.getStatus()
             let params = {
-                hello: 'stringHello',
-                number: 3,
-                floatValue: 3.1
+                name: this.name,
+                area: this.area,
+                status: this.status
             }
             console.log("hello")
             let response = await this.callApi('post','farm', params);
@@ -79,6 +110,17 @@ export default {
                 // this.info(response.statusText);
             } else {
                 this.error(response.statusText);
+            }
+        },
+        getStatus () {
+            if (this.status === 'activate') {
+                this.status = globalProperties.ACTIVATE_STATUS
+            } else {
+                if (this.status === 'deactivate') {
+                    this.status = globalProperties.DEACTIVATE_STATUS
+                } else {
+                    this.status = globalProperties.MAINTAIN_STATUS
+                }
             }
         }
     },
