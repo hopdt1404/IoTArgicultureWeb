@@ -17,19 +17,6 @@ class CreateFarmAPIRequest extends FormRequest
     }
 
     /**
-     * Override automatically apply validation rules to the URL parameters
-     *
-     * @param null $keys
-     * @return array
-     */
-    public function all($keys = null)
-    {
-//        $data = parent::all($keys);
-//        $data['id'] = $this->route('mypage');
-//        return $data;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -37,12 +24,9 @@ class CreateFarmAPIRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'require|string|max:128',
+            'name' => 'required|string|max:128',
             'area' => 'nullable|numeric',
-            'status' => 'require|digits:1'
+            'status' => 'required|digits:1'
         ];
     }
-
-
-
 }
