@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\API\CreateFarmAPIRequest;
 use App\Models\Farm;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -23,15 +24,19 @@ class FarmAPIController extends AppBaseController
      * Store a newly created FavoriteService in storage.
      * POST /favorite
      *
-     * @param Request $request
+     * @param CreateFarmAPIRequest $request
      *
      * @throws Exception
      *
      * @return Response
      */
+//    public function store(CreateFarmAPIRequest $request)
     public function store(Request $request)
     {
+//        Log::alert('store');
+//        $data = $request->validated();
         try {
+//            Log::info($data);
             return $this->sendSuccess('Success');
         } catch (Exception $ex) {
             Log::error('FarmAPIController@store:' . $ex->getMessage().$ex->getTraceAsString());

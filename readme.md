@@ -1,3 +1,8 @@
+- Catch all route laravle
+  https://mauricius.dev/laravel-catch-all-route-for-vue-single-page-applications/
+  
+-- How to user api request file ?
+
 ###Link: demo project
 - https://github.com/cretueusebiu/laravel-vue-spa (ok)
 
@@ -51,3 +56,4 @@ Doing in --
 
 ### Laravel Generator: 
 https://www.infyom.com/open-source/laravelgenerator/docs/7.0/installation
+
