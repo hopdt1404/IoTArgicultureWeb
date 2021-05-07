@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\CreateFarmAPIRequest;
-//use App\Http\Requests\CreateFarmAPIRequest;
 use App\Models\Farm;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

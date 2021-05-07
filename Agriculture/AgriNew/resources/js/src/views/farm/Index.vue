@@ -2,11 +2,20 @@
     <div>
         <div class="content">
             <div class="container-fluid">
+                <div>
+                    <b-row align-h="end">
+                        <b-col cols="2" align-self="center">
+                            <Button type="primary" @click="modal = true"><Icon type="ios-add" />Add farm</Button>
+                        </b-col>
+
+                    </b-row>
+
+                </div>
                 Page farm inside App.vue
             </div>
 
         <!--    Farm Modal        -->
-            <Button type="primary" @click="modal = true">Display dialog box</Button>
+
             <div>
                 <Modal
                     v-model="modal"
