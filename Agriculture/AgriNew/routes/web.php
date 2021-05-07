@@ -17,12 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// this code to url bypass router laravel => Router VueJs
-//Route::any('{slug}', function (){
-//    return view('welcome');
-//});
-
-Route::get('/{catchall?}', 'AppController')->where('catchall', '^(?!api).*$')->name('administration');
+/* this code to url bypass router laravel => Router VueJs */
+Route::get('/{any?}', 'AppController')
+    ->where('any', '^(?!api).*$')
+    ->name('administration');
 
 
 Auth::routes();
