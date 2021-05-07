@@ -8,6 +8,7 @@ use App\Http\Requests\API\CreateFarmAPIRequest;
 use App\Models\Farm;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use PHPUnit\Util\Exception;
 
@@ -33,10 +34,13 @@ class FarmAPIController extends AppBaseController
      */
     public function store(CreateFarmAPIRequest $request)
     {
-//        Log::alert('store');
+        $user = $request->user();
         $data = $request->all();
+        $data['created_user'] = 'hopdt';
+        $data['created_at'] = Carbon::now();;
+        $data['user_id'] = isset($user->id) ? $user->id : 0;
         try {
-            Log::info($data);
+            $this->model->insert($data);
             return $this->sendSuccess('Success');
         } catch (Exception $ex) {
             Log::error('FarmAPIController@store:' . $ex->getMessage().$ex->getTraceAsString());
