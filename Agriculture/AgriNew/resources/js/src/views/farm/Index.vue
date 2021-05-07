@@ -88,7 +88,7 @@ export default {
         }
     },
      created() {
-         console.log()
+         this.getFarms();
     },
     methods: {
 
@@ -121,6 +121,18 @@ export default {
                 } else {
                     this.status = globalProperties.MAINTAIN_STATUS
                 }
+            }
+        },
+        async getFarms() {
+            let response = await this.callApi('get','farm');
+            if (response.status === 200) {
+                this.success(response.statusText);
+                /* Three action return message ok*/
+                // this.error(response.statusText);
+                // this.warning(response.statusText);
+                // this.info(response.statusText);
+            } else {
+                this.error(response.statusText);
             }
         }
     },

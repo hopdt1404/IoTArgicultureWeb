@@ -23,6 +23,47 @@ class FarmAPIController extends AppBaseController
     }
 
     /**
+     * Display a listing of the FavoriteService.
+     * GET|HEAD /favorite
+     *
+     * @param Request $request
+     *
+     * @throws Exception
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+
+        try {
+            $farm = null;
+            return $this->sendResponse($farm, 'Get data success');
+        } catch (Exception $ex){
+            Log::error('FarmAPIController@index:' . $ex->getMessage().$ex->getTraceAsString());
+            return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Display the specified Stamp Info.
+     * GET|HEAD /stamp_infos/{id}
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
+        try {
+            $farm = null;
+            return $this->sendResponse($farm, 'Get data success');
+        }catch (\Exception $ex) {
+            Log::error($ex->getMessage().$ex->getTraceAsString());
+            return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
      * Store a newly created FavoriteService in storage.
      * POST /favorite
      *
