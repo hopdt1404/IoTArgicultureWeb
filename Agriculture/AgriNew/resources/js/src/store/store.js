@@ -10,7 +10,7 @@ export default {
             try {
                 return await axios({
                     method: method,
-                    url: url,
+                    url: 'api/' + url,
                     data: data
                 });
             } catch (e) {
