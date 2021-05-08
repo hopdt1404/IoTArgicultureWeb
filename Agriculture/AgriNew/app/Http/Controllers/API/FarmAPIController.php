@@ -33,10 +33,13 @@ class FarmAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-
+        $user = $request->user();
+        $userId = isset($user) ? $user->id : 0;
         try {
-            $farm = null;
-            return $this->sendResponse($farm, 'Get data success');
+            $farms = $this->model->where([
+                'user_id' => $userId
+            ])->get();
+            return $this->sendResponse($farms, 'Get data success');
         } catch (Exception $ex){
             Log::error('FarmAPIController@index:' . $ex->getMessage().$ex->getTraceAsString());
             return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
