@@ -22,8 +22,8 @@ class FarmAPIController extends AppBaseController
     }
 
     /**
-     * Display a listing of the FavoriteService.
-     * GET|HEAD /favorite
+     * Display a listing of the Farm.
+     * GET|HEAD /farm
      *
      * @param Request $request
      *
@@ -47,8 +47,8 @@ class FarmAPIController extends AppBaseController
     }
 
     /**
-     * Display the specified Stamp Info.
-     * GET|HEAD /stamp_infos/{id}
+     * Display the specified Farm
+     * GET|HEAD /farm/{id}
      *
      * @param int $id
      *
@@ -72,8 +72,8 @@ class FarmAPIController extends AppBaseController
     }
 
     /**
-     * Store a newly created FavoriteService in storage.
-     * POST /favorite
+     * Store a newly created Farm in storage.
+     * POST /farm
      *
      * @param CreateFarmAPIRequest $request
      *

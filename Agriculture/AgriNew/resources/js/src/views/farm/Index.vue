@@ -37,6 +37,7 @@
                     ok-text="Ok"
                     @on-ok="save()"
                     cancel-text="Cancel"
+                    @on-cancel="cancel()"
                     >
                     <div class="dialog-content">
                         <div class="dialog-item">
@@ -127,6 +128,7 @@ export default {
                 },
 
             ],
+            farmId: '',
 
 
             // ]
@@ -144,15 +146,25 @@ export default {
                 area: this.area,
                 status: this.status
             }
-            console.log("hello")
-            let response = await this.callApi('post','farm', params);
-            console.log(response);
+            let reponse = '';
+            if (isEmpty(this.farmId)) {
+                reponse = await this.callApi('post','farm', params);
+            } else {
+                reponse = await this.callApi('put','farm/' + this.farmId, params);
+            }
             if (response.status === 200) {
                 this.success(response.statusText);
                 await this.getFarms();
             } else {
                 this.error(response.statusText);
             }
+        },
+        cancel() {
+          this.farmId = '';
+          this.status = '';
+          this.name = '';
+          this.area = '';
+
         },
         postStatus () {
             if (this.status === globalProperties.ACTIVATE_STATUS.value) {
@@ -171,16 +183,7 @@ export default {
                 let dataResult = response.data.data;
 
                 dataResult.forEach((item, index) => {
-                    if (item.status === globalProperties.ACTIVATE_STATUS.key) {
-                        item.status = globalProperties.ACTIVATE_STATUS.value
-                    } else {
-                        if (item.status === globalProperties.DEACTIVATE_STATUS.key) {
-                            item.status = globalProperties.DEACTIVATE_STATUS.value
-                        } else {
-                            item.status = globalProperties.MAINTAIN_STATUS.value
-                        }
-                    }
-                    // result.push(item)
+                    this.statusKeyToValue(item)
 
                 });
 
@@ -204,7 +207,29 @@ export default {
             this.modal = ! this.modal
             console.log(row);
             let response = await this.callApi('get','farm/' + row.id);
+            if (response.status === 200) {
+                let farm = this.statusKeyToValue(response.data.data);
+                this.name = farm.name
+                this.area = farm.area
+                this.status = farm.status
+                this.farmId = farm.id
+            } else {
+                this.error(response.statusText);
+            }
         },
+
+        statusKeyToValue (item) {
+            if (item.status === globalProperties.ACTIVATE_STATUS.key) {
+                item.status = globalProperties.ACTIVATE_STATUS.value
+            } else {
+                if (item.status === globalProperties.DEACTIVATE_STATUS.key) {
+                    item.status = globalProperties.DEACTIVATE_STATUS.value
+                } else {
+                    item.status = globalProperties.MAINTAIN_STATUS.value
+                }
+            }
+            return item;
+        }
 
 
     },
