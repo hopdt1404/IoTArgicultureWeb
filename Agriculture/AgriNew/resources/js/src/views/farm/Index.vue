@@ -2,9 +2,10 @@
     <div>
         <div class="content">
             <div class="container-fluid">
-                <div>
+                <div class="block-btn-add-item">
                     <b-row align-h="end">
-                        <b-col cols="2" align-self="center">
+                        <b-col cols="2" align-self="center"
+                               align-content="end">
                             <Button type="primary" @click="modal = true"><Icon type="ios-add" />Add farm</Button>
                         </b-col>
 
@@ -13,7 +14,7 @@
                 </div>
                 <div>
                     <b-table striped hover bordered
-                             @row-clicked="expandAdditionalInfo"
+                             @row-dblclicked="expandAdditionalInfo"
                              :items="farms"
                              :fields="columnsTable"
                              v-if="farms.length > 0">
@@ -199,10 +200,10 @@ export default {
         // Todo: watch video
         // Todo: Show detail record
 
-        expandAdditionalInfo(row) {
-            // row._showDetails = !row._showDetails;
-            console.log('hello');
+        async expandAdditionalInfo(row) {
+            this.modal = ! this.modal
             console.log(row);
+            let response = await this.callApi('get','farm/' + row.id);
         },
 
 

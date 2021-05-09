@@ -3141,5 +3141,8 @@ i.cross_icon{
 .input-title {
     font-size: 1em;
     color: #404040;
+}
 
+.block-btn-add-item {
+    margin-bottom: 2em;
 }
