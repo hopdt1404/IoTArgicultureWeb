@@ -1,37 +1,28 @@
-- Catch all route laravle
-  https://mauricius.dev/laravel-catch-all-route-for-vue-single-page-applications/
+### Catch all route laravle
+  https://mauricius.dev/laravel-catch-all-route-for-vue-single-page-applications/ : Uy tin luon
+
+### Laravel Generator:
+https://www.infyom.com/open-source/laravelgenerator/docs/7.0/installation : : Uy tin luon
   
--- How to user api request file ?
-
 ###Link: demo project
-- https://github.com/cretueusebiu/laravel-vue-spa (ok)
-
-###### Mutations
-https://viblo.asia/p/vuex-va-vi-du-don-gian-GrLZDpzgZk0
-
-Error: https://css-tricks.com/how-to-import-a-sass-file-into-every-vue-component-in-an-app/
-Not Map SaSS in project
-
 
 ###Document:
 + Vuejs:
-    - Vietnamese: https://vi.vuejs.org/v2/guide/
-    - English: https://vuejs.org/v2/guide/
+  - Vietnamese: https://vi.vuejs.org/v2/guide/
+  - English: https://vuejs.org/v2/guide/
 + Laravel:
-    - Laravel 7.x:
+  - Laravel 7.x:
 
 + Video: become full stack developer
-    - Link: https://www.youtube.com/watch?v=X08Y_8DkRNc&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=8
-    - Current time: 9:33
-      
-    - FrontEnd Call Backend youtube.com/watch?v=eQ2OPuDsnoE&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=9
-    
-  
+  - Link: https://www.youtube.com/watch?v=eQ2OPuDsnoE&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=9
+  - Current time: 0:00
+
+
 + Axios: Doc
   https://github.com/axios/axios
-  
+
 + UI
- https://www.iviewui.com/components/icon-en
+  https://www.iviewui.com/components/icon-en
 
 - php artisan serve --port=numberPort
 - sudo npm install
@@ -46,6 +37,16 @@ Not Map SaSS in project
 Content-Type: application/json
 X-Requested-With: XMLHttpRequest
 
+
+###### Mutations
+https://viblo.asia/p/vuex-va-vi-du-don-gian-GrLZDpzgZk0
+
+Error: https://css-tricks.com/how-to-import-a-sass-file-into-every-vue-component-in-an-app/
+Not Map SaSS in project
+
+
+
+
 :Access Token
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODIwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYxNjg4NzU3OSwiZXhwIjoxNjE2OTczOTc5LCJuYmYiOjE2MTY4ODc1NzksImp0aSI6IjlEWURjMUFCN2VEbWRtdUMiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.WEFGeOGG_FgIV_JgDHkyXLPaw8XBegUKYEtmITy8jko
 
@@ -54,6 +55,5 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODIwMFw
 
 Doing in --
 
-### Laravel Generator: 
-https://www.infyom.com/open-source/laravelgenerator/docs/7.0/installation
+
 

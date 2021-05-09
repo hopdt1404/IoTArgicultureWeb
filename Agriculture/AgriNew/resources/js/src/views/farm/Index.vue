@@ -12,25 +12,10 @@
 
                 </div>
                 <div>
-                    <b-table striped hover :items="farms" :fields="columnsTable"  v-if="farms.length > 0"></b-table>
-<!--                    <b-table striped hover :items="farms" :fields="columnsTable"></b-table>-->
-<!--                    <Table border :columns="columnsTable" :data="farms"></Table>-->
-<!--                    <table>-->
-<!--                        <thead>-->
-<!--                            <tr>-->
-<!--                                <th>Name</th>-->
-<!--                                <th>Area</th>-->
-<!--                                <th>Status</th>-->
-<!--                            </tr>-->
-<!--                        </thead>-->
-<!--                        <tbody>-->
-<!--                            <tr v-for="(farm, index) in farms" :key="index" v-if="farms.length > 0">-->
-<!--                                <td>{{ farm.name }}</td>-->
-<!--                                <td>{{ farm.area }}</td>-->
-<!--                                <td>{{ farm.status }}</td>-->
-<!--                            </tr>-->
-<!--                        </tbody>-->
-<!--                    </table>-->
+                    <b-table striped hover :items="farms" :fields="columnsTable"  v-if="farms.length > 0">
+
+                    </b-table>
+
                 </div>
 
             </div>
