@@ -54,11 +54,17 @@ class FarmAPIController extends AppBaseController
      *
      * @return Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
+        $user = $request->user();
+        $userId = isset($user) ? $user->id : 0;
         try {
-            $farm = null;
-            return $this->sendResponse($farm, 'Get data success');
+            $farm = $this->model->where([
+                'user_id' => $userId,
+                'id' => $id
+            ])->first();
+
+            return $this->sendResponse($farm, 'Get detail data success');
         }catch (\Exception $ex) {
             Log::error($ex->getMessage().$ex->getTraceAsString());
             return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);

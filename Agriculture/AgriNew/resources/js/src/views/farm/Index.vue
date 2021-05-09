@@ -198,7 +198,7 @@ export default {
             }
         },
         // Todo: watch video
-        // Todo: Show detail record
+
 
         async expandAdditionalInfo(row) {
             this.modal = ! this.modal
