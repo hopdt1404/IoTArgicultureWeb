@@ -146,11 +146,11 @@ export default {
                 area: this.area,
                 status: this.status
             }
-            let reponse = '';
-            if (isEmpty(this.farmId)) {
-                reponse = await this.callApi('post','farm', params);
+            let response = '';
+            if (this.farmId) {
+                response = await this.callApi('put','farm/' + this.farmId, params);
             } else {
-                reponse = await this.callApi('put','farm/' + this.farmId, params);
+                response = await this.callApi('post','farm', params);
             }
             if (response.status === 200) {
                 this.success(response.statusText);

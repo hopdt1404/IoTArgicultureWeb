@@ -90,9 +90,39 @@ class FarmAPIController extends AppBaseController
         $data['user_id'] = isset($user->id) ? $user->id : 0;
         try {
             $this->model->insert($data);
-            return $this->sendSuccess('Success');
+            return $this->sendSuccess('Success create data');
         } catch (Exception $ex) {
             Log::error('FarmAPIController@store:' . $ex->getMessage().$ex->getTraceAsString());
+            return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Update a Farm existed in storage.
+     * POST /farm
+     *
+     * @param $id
+     * @param CreateFarmAPIRequest $request
+     *
+     * @throws Exception
+     *
+     * @return Response
+     */
+    public function update($id, CreateFarmAPIRequest $request)
+    {
+        $user = $request->user();
+        $data = $request->all();
+        $data['updated_user'] = 'hopdt';
+        $data['updated_at'] = Carbon::now();;
+        $userId = isset($user->id) ? $user->id : 0;
+        try {
+            $this->model->where([
+                'user_id' => $userId,
+                'id' => $id
+            ])->update($data);
+            return $this->sendSuccess('Success update data');
+        } catch (Exception $ex) {
+            Log::error('FarmAPIController@update:' . $ex->getMessage().$ex->getTraceAsString());
             return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
