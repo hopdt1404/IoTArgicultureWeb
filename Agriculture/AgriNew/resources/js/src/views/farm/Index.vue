@@ -196,6 +196,9 @@ export default {
                 // return '';
             }
         },
+        // Todo: watch video
+        // Todo: Show detail record
+
         expandAdditionalInfo(row) {
             // row._showDetails = !row._showDetails;
             console.log('hello');
