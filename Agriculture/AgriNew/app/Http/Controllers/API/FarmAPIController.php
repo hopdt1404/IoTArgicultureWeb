@@ -120,6 +120,8 @@ class FarmAPIController extends AppBaseController
                 'user_id' => $userId,
                 'id' => $id
             ])->update($data);
+            Log::info('$data');
+            Log::info($data);
             return $this->sendSuccess('Success update data');
         } catch (Exception $ex) {
             Log::error('FarmAPIController@update:' . $ex->getMessage().$ex->getTraceAsString());

@@ -6,7 +6,7 @@
                     <b-row align-h="end">
                         <b-col cols="2" align-self="center"
                                align-content="end">
-                            <Button type="primary" @click="modal = true"><Icon type="ios-add" />Add farm</Button>
+                            <Button type="primary" @click="showModal"><Icon type="ios-add" />Add farm</Button>
                         </b-col>
 
                     </b-row>
@@ -75,7 +75,7 @@
                                             <Icon type="logo-android"></Icon>
                                             <span>Deactivate</span>
                                         </Radio>
-                                        <Radio label="maintenance">
+                                        <Radio label="maintain">
                                             <Icon type="logo-windows"></Icon>
                                             <span>Maintain</span>
                                         </Radio>
@@ -140,13 +140,13 @@ export default {
     methods: {
 
         async save() {
-            this.postStatus()
+            this.postStatus();
+            let response = '';
             let params = {
                 name: this.name,
                 area: this.area,
                 status: this.status
-            }
-            let response = '';
+            };
             if (this.farmId) {
                 response = await this.callApi('put','farm/' + this.farmId, params);
             } else {
@@ -159,12 +159,18 @@ export default {
                 this.error(response.statusText);
             }
         },
+        showModal() {
+            this.resetModal()
+            this.modal = !this.modal
+        },
         cancel() {
-          this.farmId = '';
-          this.status = '';
-          this.name = '';
-          this.area = '';
-
+            this.resetModal();
+        },
+        resetModal() {
+            this.farmId = '';
+            this.status = '';
+            this.name = '';
+            this.area = '';
         },
         postStatus () {
             if (this.status === globalProperties.ACTIVATE_STATUS.value) {
@@ -176,6 +182,7 @@ export default {
                     this.status = globalProperties.MAINTAIN_STATUS.key
                 }
             }
+            console.log(this.status)
         },
         async getFarms() {
             let response = await this.callApi('get','farm');

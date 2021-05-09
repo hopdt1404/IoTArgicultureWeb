@@ -1,7 +1,7 @@
 const globalProperties = {
     ACTIVATE_STATUS: {
         'key': 1,
-        'value': 'active'
+        'value': 'activate'
     },
     // ACTIVATE_STATUS_
     DEACTIVATE_STATUS: {
