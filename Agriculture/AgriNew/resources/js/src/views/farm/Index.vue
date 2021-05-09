@@ -34,7 +34,7 @@
                 <Modal
                     v-model="modal"
                     title="Farm information"
-                    ok-text="Ok"
+                    ok-text="Save"
                     @on-ok="save()"
                     cancel-text="Cancel"
                     @on-cancel="cancel()"

@@ -14,4 +14,5 @@ const globalProperties = {
     },
 
 }
+
 export default globalProperties;
