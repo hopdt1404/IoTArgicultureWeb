@@ -11,7 +11,28 @@
                     </b-row>
 
                 </div>
-                Page farm inside App.vue
+                <div>
+                    <b-table striped hover :items="farms" :fields="columnsTable"  v-if="farms.length > 0"></b-table>
+<!--                    <b-table striped hover :items="farms" :fields="columnsTable"></b-table>-->
+<!--                    <Table border :columns="columnsTable" :data="farms"></Table>-->
+<!--                    <table>-->
+<!--                        <thead>-->
+<!--                            <tr>-->
+<!--                                <th>Name</th>-->
+<!--                                <th>Area</th>-->
+<!--                                <th>Status</th>-->
+<!--                            </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                            <tr v-for="(farm, index) in farms" :key="index" v-if="farms.length > 0">-->
+<!--                                <td>{{ farm.name }}</td>-->
+<!--                                <td>{{ farm.area }}</td>-->
+<!--                                <td>{{ farm.status }}</td>-->
+<!--                            </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+                </div>
+
             </div>
 
         <!--    Farm Modal        -->
@@ -19,7 +40,7 @@
             <div>
                 <Modal
                     v-model="modal"
-                    title="Farm infomation"
+                    title="Farm information"
                     ok-text="Ok"
                     @on-ok="save()"
                     cancel-text="Cancel"
@@ -93,16 +114,38 @@ export default {
             name: '',
             area: '',
             status: '',
-            farm_type_id: ''
+            farm_type_id: '',
+            farms: '',
+            columnsTable: [
+                {
+                    label: 'Name',
+                    key: 'name',
+                    sortable: true
+                },
+                {
+                    label: 'Area',
+                    key: 'area',
+                    sortable: true
+                },
+                {
+                    label: 'Status',
+                    key: 'status',
+                    sortable: true
+                },
+
+            ],
+
+
+            // ]
         }
     },
-     created() {
-         this.getFarms();
+    created() {
+         this.getFarms()
     },
     methods: {
 
         async save() {
-            this.getStatus()
+            this.postStatus()
             let params = {
                 name: this.name,
                 area: this.area,
@@ -113,6 +156,10 @@ export default {
             console.log(response);
             if (response.status === 200) {
                 this.success(response.statusText);
+                this.getFarms();
+                // await this.getFarms().then((data) => {
+                //     this.farm = data
+                // });
                 /* Three action return message ok*/
                 // this.error(response.statusText);
                 // this.warning(response.statusText);
@@ -121,29 +168,54 @@ export default {
                 this.error(response.statusText);
             }
         },
-        getStatus () {
-            if (this.status === 'activate') {
-                this.status = globalProperties.ACTIVATE_STATUS
+        postStatus () {
+            if (this.status === globalProperties.ACTIVATE_STATUS.value) {
+                this.status = globalProperties.ACTIVATE_STATUS.key
             } else {
-                if (this.status === 'deactivate') {
-                    this.status = globalProperties.DEACTIVATE_STATUS
+                if (this.status === globalProperties.DEACTIVATE_STATUS.value) {
+                    this.status = globalProperties.DEACTIVATE_STATUS.key
                 } else {
-                    this.status = globalProperties.MAINTAIN_STATUS
+                    this.status = globalProperties.MAINTAIN_STATUS.key
                 }
             }
         },
         async getFarms() {
             let response = await this.callApi('get','farm');
             if (response.status === 200) {
+                // this.farms = response.data.data;
+                // console.log(typeof this.farms)
+
+                let dataResult = response.data.data;;
+                // let result = [];
+                dataResult.forEach((item, index) => {
+                    if (item.status === globalProperties.ACTIVATE_STATUS.key) {
+                        item.status = globalProperties.ACTIVATE_STATUS.value
+                    } else {
+                        if (item.status === globalProperties.DEACTIVATE_STATUS.key) {
+                            item.status = globalProperties.DEACTIVATE_STATUS.value
+                        } else {
+                            item.status = globalProperties.MAINTAIN_STATUS.value
+                        }
+                    }
+                    // result.push(item)
+
+                });
+
+                this.farms = dataResult
+                // console.log(this.farms);
                 this.success(response.statusText);
+                // return dataResult;
                 /* Three action return message ok*/
                 // this.error(response.statusText);
                 // this.warning(response.statusText);
                 // this.info(response.statusText);
             } else {
                 this.error(response.statusText);
+                // return '';
             }
-        }
+        },
+
+
     },
 }
 </script>
