@@ -12,7 +12,14 @@
 
                 </div>
                 <div>
-                    <b-table striped hover :items="farms" :fields="columnsTable"  v-if="farms.length > 0">
+                    <b-table striped hover bordered
+                             @row-clicked="expandAdditionalInfo"
+                             :items="farms"
+                             :fields="columnsTable"
+                             v-if="farms.length > 0">
+                        <template>
+
+                        </template>
 
                     </b-table>
 
@@ -141,14 +148,7 @@ export default {
             console.log(response);
             if (response.status === 200) {
                 this.success(response.statusText);
-                this.getFarms();
-                // await this.getFarms().then((data) => {
-                //     this.farm = data
-                // });
-                /* Three action return message ok*/
-                // this.error(response.statusText);
-                // this.warning(response.statusText);
-                // this.info(response.statusText);
+                await this.getFarms();
             } else {
                 this.error(response.statusText);
             }
@@ -167,11 +167,8 @@ export default {
         async getFarms() {
             let response = await this.callApi('get','farm');
             if (response.status === 200) {
-                // this.farms = response.data.data;
-                // console.log(typeof this.farms)
+                let dataResult = response.data.data;
 
-                let dataResult = response.data.data;;
-                // let result = [];
                 dataResult.forEach((item, index) => {
                     if (item.status === globalProperties.ACTIVATE_STATUS.key) {
                         item.status = globalProperties.ACTIVATE_STATUS.value
@@ -198,6 +195,11 @@ export default {
                 this.error(response.statusText);
                 // return '';
             }
+        },
+        expandAdditionalInfo(row) {
+            // row._showDetails = !row._showDetails;
+            console.log('hello');
+            console.log(row);
         },
 
 
