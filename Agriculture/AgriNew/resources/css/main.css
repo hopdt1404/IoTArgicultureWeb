@@ -3146,3 +3146,11 @@ i.cross_icon{
 .block-btn-add-item {
     margin-bottom: 2em;
 }
+
+.block-content-upload {
+    padding: 1em 0;
+
+}
+.icon-upload-color {
+    color: #3399ff;
+}
