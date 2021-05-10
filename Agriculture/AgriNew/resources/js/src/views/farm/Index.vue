@@ -46,7 +46,15 @@
                                     <label class="input-title" for="name">Name</label>
                                 </b-col>
                                 <b-col cols="12">
-                                    <Input id="name" v-model="name" placeholder="Enter something..." style="width: 100%" />
+                                    <Input id="name"
+                                           v-model="name"
+                                           clearable
+                                           type="text"
+                                           maxlength="10"
+                                           show-word-limit
+                                           icon="ios-clock-outline"
+                                           placeholder="Enter something..."
+                                           style="width: 100%" />
                                 </b-col>
                             </b-row>
                         </div>
@@ -56,7 +64,12 @@
                                     <label class="input-title" for="area">Area</label>
                                 </b-col>
                                 <b-col cols="12">
-                                    <Input id="area" v-model="area" type="number" placeholder="Enter something..." style="width: 100%" />
+                                    <Input id="area"
+                                           v-model="area"
+                                           type="number"
+                                           suffix="ios-search"
+                                           placeholder="Enter something..."
+                                           style="width: 100%" />
                                 </b-col>
                             </b-row>
                         </div>
