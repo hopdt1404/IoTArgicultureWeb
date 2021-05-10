@@ -191,12 +191,11 @@ export default {
 
                 dataResult.forEach((item, index) => {
                     this.statusKeyToValue(item)
-
                 });
 
                 this.farms = dataResult
                 // console.log(this.farms);
-                this.success(response.statusText);
+                // this.success(response.statusText);
                 // return dataResult;
                 /* Three action return message ok*/
                 // this.error(response.statusText);
@@ -212,7 +211,6 @@ export default {
 
         async expandAdditionalInfo(row) {
             this.modal = ! this.modal
-            console.log(row);
             let response = await this.callApi('get','farm/' + row.id);
             if (response.status === 200) {
                 let farm = this.statusKeyToValue(response.data.data);
