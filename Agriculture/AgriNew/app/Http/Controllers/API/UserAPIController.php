@@ -96,6 +96,7 @@ class UserAPIController extends AppBaseController
         //
     }
 
+
     public function updateImageProfile(Request $request)
     {
         $user = $request->user();

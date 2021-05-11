@@ -11,6 +11,11 @@
                 <div>
                     <h4>Single upload</h4>
                     <Upload type="drag"
+                            :format="['jpg','jpeg','png']"
+                            :max-size="2048"
+                            :on-success="handleSuccess"
+                            :on-format-error="handleFormatError"
+                            :on-exceeded-size="handleMaxSize"
                             action="api/user/updateImageProfile">
 
                         <div class="block-content-upload">
@@ -62,22 +67,35 @@ export default {
     },
     methods: {
 
-        async upload (event) {
-            this.loadingStatus = true;
-            console.log('file ' + this.file)
-            let params = {
-                image: this.file,
-                id: 1
-            }
-            let response = await this.callApi('post','user/updateImageProfile', params);
-            if (response.status === 200) {
-                this.file = null;
-                this.loadingStatus = false;
-                this.success(response.statusText);
-            } else {
-                this.error(response.statusText);
-            }
-
+        // async upload (event) {
+        //     this.loadingStatus = true;
+        //     console.log('file ' + this.file)
+        //     let params = {
+        //         image: this.file,
+        //         id: 1
+        //     }
+        //     let response = await this.callApi('post','user/updateImageProfile', params);
+        //     if (response.status === 200) {
+        //         this.file = null;
+        //         this.loadingStatus = false;
+        //         this.success(response.statusText);
+        //     } else {
+        //         this.error(response.statusText);
+        //     }
+        //
+        // },
+        handleSuccess (res, file) {
+            this.file = {};
+            this.file.res = res;
+            this.file.name = file;
+        },
+        handleFormatError (file) {
+            this.warning( 'The file format is incorrect',
+                'File format of ' + file.name + ' is incorrect, please select jpg or png.');
+        },
+        handleMaxSize (file) {
+            this.warning('Exceeding file size limit',
+                'File  ' + file.name + ' is too large, no more than 2M.');
         },
 
 
