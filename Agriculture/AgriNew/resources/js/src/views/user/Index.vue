@@ -11,8 +11,7 @@
                 <div>
                     <h4>Single upload</h4>
                     <Upload type="drag"
-                            :before-upload="handleUpload"
-                            action="this_is_action_post image">
+                            action="api/user/updateImageProfile">
 
                         <div class="block-content-upload">
                             <Icon class="icon-upload-color" type="ios-cloud-upload" size="52"></Icon>
@@ -23,7 +22,8 @@
                     </Upload>
                     <div v-if="file !== null">
                         Upload file: {{ file.name }}
-                        <Button type="text" @click="upload" :loading="loadingStatus">{{ loadingStatus ? 'Uploading' : 'Click to upload' }}</Button>
+                        <Button type="text" @click="upload">Uploading</Button>
+<!--                        <Button type="text" @click="upload" :loading="loadingStatus">{{ loadingStatus ? 'Uploading' : 'Click to upload' }}</Button>-->
                     </div>
 
                 </div>
@@ -58,29 +58,27 @@ export default {
     data () {
         return {
             file: null,
-            loadingStatus: false,
-            uploadList: []
         }
     },
     methods: {
-        handleUpload (file) {
-            this.file = file;
-            return false;
-        },
-        async upload () {
+
+        async upload (event) {
             this.loadingStatus = true;
-            let response = await this.callApi('post','user/' + this.farmId, params);
-            setTimeout(() => {
+            console.log('file ' + this.file)
+            let params = {
+                image: this.file,
+                id: 1
+            }
+            let response = await this.callApi('post','user/updateImageProfile', params);
+            if (response.status === 200) {
                 this.file = null;
                 this.loadingStatus = false;
-                this.success('Success upload image')
-            }, 1500);
+                this.success(response.statusText);
+            } else {
+                this.error(response.statusText);
+            }
+
         },
-        handleUploadMultiple (files) {
-            console.log(typeof files)
-            console.log(files)
-            return false;
-        }
 
 
     },

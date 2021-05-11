@@ -6,12 +6,13 @@ export default {
     },
     methods: {
         /* method call api  */
-        async callApi(method, url, data) {
+        async callApi(method, url, data, config = null) {
             try {
                 return await axios({
                     method: method,
                     url: 'api/' + url,
-                    data: data
+                    data: data,
+                    config: config
                 });
             } catch (e) {
                 return e.response
