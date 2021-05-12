@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\API\UploadImageAPIRequest;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -97,13 +98,13 @@ class UserAPIController extends AppBaseController
     }
 
 
-    public function updateImageProfile(Request $request)
+    public function updateImageProfile(UploadImageAPIRequest $request)
     {
         $user = $request->user();
         $userId = isset($user) ? $user->id : 1;
         $data = $request->all();
         $MAX_WITH_HEIGHT_IMAGE = 100;
-        $image = $data['file'];
+        $image = $data['image'];
         try {
             $image = \Intervention\Image\Facades\Image::make($image->getRealPath());
             $widthImage = $image->width();

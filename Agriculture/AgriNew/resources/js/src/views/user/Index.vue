@@ -12,6 +12,7 @@
                     <h4>Single upload</h4>
                     <Upload type="drag"
                             :format="['jpg','jpeg','png']"
+                            name="image"
                             :max-size="2048"
                             :on-success="handleSuccess"
                             :on-format-error="handleFormatError"
