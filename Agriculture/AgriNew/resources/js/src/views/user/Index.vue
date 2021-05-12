@@ -16,7 +16,9 @@
                             :max-size="2048"
                             :on-success="handleSuccess"
                             :on-format-error="handleFormatError"
+                            :on-error="handleError"
                             :on-exceeded-size="handleMaxSize"
+                            :show-upload-list="true"
                             action="api/user/updateImageProfile">
 
                         <div class="block-content-upload">
@@ -27,31 +29,16 @@
 
                     </Upload>
                     <div v-if="file !== null">
-                        Upload file: {{ file.name }}
-                        <Button type="text" @click="upload">Uploading</Button>
+
+<!--                        Upload file: {{ file.name }}-->
+<!--                        <Button type="text" @click="upload">Uploading</Button>-->
 <!--                        <Button type="text" @click="upload" :loading="loadingStatus">{{ loadingStatus ? 'Uploading' : 'Click to upload' }}</Button>-->
                     </div>
 
                 </div>
                 <div>
                     <h4>Multiple upload research later</h4>
-<!--                    <Upload type="drag"-->
-<!--                            ref="upload"-->
-<!--                            multiple-->
-<!--                            :before-upload="handleUploadMultiple"-->
-<!--                            action="upload">-->
 
-<!--                        <div class="block-content-upload">-->
-<!--                            <Icon class="icon-upload-color" type="ios-cloud-upload" size="52"></Icon>-->
-<!--                            <p>Click or drag files here to upload</p>-->
-
-<!--                        </div>-->
-
-<!--                    </Upload>-->
-<!--                    <div v-if="uploadList != null">-->
-<!--                        Upload multi file: {{ }}-->
-
-<!--                    </div>-->
                 </div>
 
             </div>
@@ -64,6 +51,7 @@ export default {
     data () {
         return {
             file: null,
+            uploadList: [],
         }
     },
     methods: {
@@ -90,6 +78,10 @@ export default {
             this.file.res = res;
             this.file.name = file;
         },
+        handleError(res, file) {
+            console.log('res', res)
+            console.log('file', file)
+        },
         handleFormatError (file) {
             this.warning( 'The file format is incorrect',
                 'File format of ' + file.name + ' is incorrect, please select jpg or png.');
@@ -102,7 +94,7 @@ export default {
 
     },
     mounted () {
-
+        // this.uploadList = this.$refs.upload.fileList;
     }
 
 }
