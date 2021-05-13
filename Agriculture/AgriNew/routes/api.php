@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('farm', 'FarmAPIController');
 Route::resource('user', 'UserAPIController');
 Route::post('user/updateImageProfile', 'UserAPIController@updateImageProfile');
+Route::post('user/maskFunction', 'UserAPIController@maskFunction');
 

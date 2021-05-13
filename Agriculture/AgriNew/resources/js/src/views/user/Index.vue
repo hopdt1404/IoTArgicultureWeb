@@ -2,45 +2,45 @@
     <div>
         <div class="content">
             <div class="container-fluid">
-<!--                 All content-->
-                <div>
-
-                </div>
-
-<!--                upload file (image,textFile,... )-->
-                <div>
-                    <h4>Single upload</h4>
-                    <Upload type="drag"
-                            :format="['jpg','jpeg','png']"
-                            name="image"
-                            :max-size="2048"
-                            :on-success="handleSuccess"
-                            :on-format-error="handleFormatError"
-                            :on-error="handleError"
-                            :on-exceeded-size="handleMaxSize"
-                            :before-upload="handleUpload"
-                            :show-upload-list="true"
-                            action="api/user/updateImageProfile">
-
-                        <div class="block-content-upload">
-                            <Icon class="icon-upload-color" type="ios-cloud-upload" size="52"></Icon>
-                            <p>Click or drag files here to upload</p>
-
-                        </div>
-
-                    </Upload>
-                    <div v-if="base64Img != null">
-                            <img alt="tmp" :src="base64Img" />
-<!--                        Upload file: {{ file.name }}-->
-<!--                        <Button type="text" @click="upload">Uploading</Button>-->
-<!--                        <Button type="text" @click="upload" :loading="loadingStatus">{{ loadingStatus ? 'Uploading' : 'Click to upload' }}</Button>-->
+                <div class="container">
+                    <div class="block-header-profile">
+                        User profile
                     </div>
+                    <div>
 
+                    </div>
                 </div>
-                <div>
-                    <h4>Multiple upload research later</h4>
 
-                </div>
+<!--                <div>-->
+<!--                    <h4>Update avatar user</h4>-->
+<!--                    <Upload type="drag"-->
+<!--                            :format="['jpg','jpeg','png']"-->
+<!--                            name="image"-->
+<!--                            :max-size="2048"-->
+<!--                            :on-success="handleSuccess"-->
+<!--                            :on-format-error="handleFormatError"-->
+<!--                            :on-error="handleError"-->
+<!--                            :on-exceeded-size="handleMaxSize"-->
+<!--                            :before-upload="handleUpload"-->
+<!--                            :show-upload-list="true"-->
+<!--                            action="api/user/maskFunction">-->
+
+<!--                        <div class="block-content-upload">-->
+<!--                            <Icon class="icon-upload-color" type="ios-cloud-upload" size="52"></Icon>-->
+<!--                            <p>Click or drag files here to upload</p>-->
+
+<!--                        </div>-->
+
+<!--                    </Upload>-->
+<!--                    <div v-if="this.imageUpdate.data != null">-->
+<!--                        <img alt="tmp" :src="'data:image/jpeg;base64, ' + this.imageUpdate.data" />-->
+<!--                    </div>-->
+<!--                    <div v-else-if="this.avatar != null">-->
+<!--                        <img alt="tmp" :src="'data:image/jpeg;base64, ' + this.avatar" />-->
+<!--                    </div>-->
+
+<!--                </div>-->
+
 
             </div>
         </div>
@@ -51,34 +51,54 @@
 export default {
     data () {
         return {
-            file: {
+            name: '',
+            email: '',
+            phone_number: '',
+            avatar: '',
+            imageUpdate: {
                 name: null,
                 res: null,
-                imageBase64: null
+                data: null
             },
             uploadList: [],
             base64Img: null
         }
     },
     methods: {
+        async initData () {
+            let params = {
+                id: 1
+            }
+            // Toto: recall action  axios
+            let response = await this.callApi('get','user', params);
+            if (response.status === 200) {
+                let data = response.data.data;
+                this.name = data.name;
+                this.email = data.email;
+                this.phone_number = data.phone_number;
+                this.avatar = data.avatar
+            } else {
+                this.error(response.statusText);
+            }
+        },
 
-        // async upload (event) {
-        //     this.loadingStatus = true;
-        //     console.log('file ' + this.file)
-        //     let params = {
-        //         image: this.file,
-        //         id: 1
-        //     }
-        //     let response = await this.callApi('post','user/updateImageProfile', params);
-        //     if (response.status === 200) {
-        //         this.file = null;
-        //         this.loadingStatus = false;
-        //         this.success(response.statusText);
-        //     } else {
-        //         this.error(response.statusText);
-        //     }
-        //
-        // },
+        async upload (event) {
+            this.loadingStatus = true;
+            console.log('file ' + this.file)
+            let params = {
+                image: this.file,
+                id: 1
+            }
+            let response = await this.callApi('post','user/updateImageProfile', params);
+            if (response.status === 200) {
+                this.file = null;
+                this.loadingStatus = false;
+                this.success(response.statusText);
+            } else {
+                this.error(response.statusText);
+            }
+
+        },
         handleSuccess (res, file) {
             this.file.res = res;
             this.file.name = file;
@@ -101,21 +121,22 @@ export default {
         },
         handleUpload (file) {
             let reader = new FileReader();
-            reader.onloadend = function() {
-                console.log('RESULT', reader.result)
-
-            }
-            reader.readAsDataURL(file);
-            this.base64Img = reader.result
-
-
-
-
+            // reader.onloadend = function() {
+            //     console.log('RESULT', reader.result)
+            //
+            // }
+            // let temp = reader.readAsDataURL(file);
+            // this.imageUpdate.data = reader.result
         },
+
+
 
     },
     mounted () {
         // this.uploadList = this.$refs.upload.fileList;
+    },
+    created() {
+        this.initData();
     }
 
 }

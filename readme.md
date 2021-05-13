@@ -14,8 +14,8 @@ https://www.infyom.com/open-source/laravelgenerator/docs/7.0/installation : : Uy
   - Laravel 7.x:
 
 + Video: become full stack developer
-  - Link: https://www.youtube.com/watch?v=rZ0gLHPmBFw&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=11
-  - Current time: 04:00
+  - Link: https://www.youtube.com/watch?v=-o5mgphZfWc&list=PLKpfEl4N7tRqIx4VZmuZBnUQ6vG4uDgq7&index=15
+  - Current time: 00:00
 
 
 + Axios: Doc

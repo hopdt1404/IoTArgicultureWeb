@@ -26,9 +26,18 @@ class UserAPIController extends AppBaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+//        $data = $request->all();
+        $user = $request->user();
+        $userId = isset($user) ? $user->id : 1;
+        try {
+            $userData = $this->model->where('id', $userId)->first();
+            return $this->sendResponse($userData, 'Index function');
+        } catch (Exception $ex){
+            Log::error('UserAPIController@index:' . $ex->getMessage().$ex->getTraceAsString());
+            return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -129,6 +138,15 @@ class UserAPIController extends AppBaseController
             return $this->sendSuccess( 'Success upload image');
         } catch (Exception $ex){
             Log::error('UserAPIController@updateImageProfile:' . $ex->getMessage().$ex->getTraceAsString());
+            return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function maskFunction () {
+        try {
+            return $this->sendSuccess( 'Mask function success, update image real is other function');
+        } catch (Exception $ex){
+            Log::error('UserAPIController@maskFunction:' . $ex->getMessage().$ex->getTraceAsString());
             return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
