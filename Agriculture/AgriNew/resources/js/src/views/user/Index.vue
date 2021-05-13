@@ -18,6 +18,7 @@
                             :on-format-error="handleFormatError"
                             :on-error="handleError"
                             :on-exceeded-size="handleMaxSize"
+                            :before-upload="handleUpload"
                             :show-upload-list="true"
                             action="api/user/updateImageProfile">
 
@@ -28,8 +29,8 @@
                         </div>
 
                     </Upload>
-                    <div v-if="file !== null">
-
+                    <div v-if="base64Img != null">
+                            <img alt="tmp" :src="base64Img" />
 <!--                        Upload file: {{ file.name }}-->
 <!--                        <Button type="text" @click="upload">Uploading</Button>-->
 <!--                        <Button type="text" @click="upload" :loading="loadingStatus">{{ loadingStatus ? 'Uploading' : 'Click to upload' }}</Button>-->
@@ -50,8 +51,13 @@
 export default {
     data () {
         return {
-            file: null,
+            file: {
+                name: null,
+                res: null,
+                imageBase64: null
+            },
             uploadList: [],
+            base64Img: null
         }
     },
     methods: {
@@ -74,10 +80,13 @@ export default {
         //
         // },
         handleSuccess (res, file) {
-            this.file = {};
             this.file.res = res;
             this.file.name = file;
+
+            console.log('file handleSuccess', file)
+            console.log('res handleSuccess', res)
         },
+
         handleError(res, file) {
             console.log('res', res)
             console.log('file', file)
@@ -90,7 +99,19 @@ export default {
             this.warning('Exceeding file size limit',
                 'File  ' + file.name + ' is too large, no more than 2M.');
         },
+        handleUpload (file) {
+            let reader = new FileReader();
+            reader.onloadend = function() {
+                console.log('RESULT', reader.result)
 
+            }
+            reader.readAsDataURL(file);
+            this.base64Img = reader.result
+
+
+
+
+        },
 
     },
     mounted () {
