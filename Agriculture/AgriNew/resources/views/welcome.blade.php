@@ -15,6 +15,7 @@
 
     </body>
     <script src="{{ mix('/js/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
 {{--    user css from google api -- not need  --}}
 {{--    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i" rel="stylesheet">--}}
