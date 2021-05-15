@@ -9,6 +9,74 @@
                         </div>
                     </div>
                     <div class="block-content-profile">
+                        <b-form>
+                            <b-form-group
+                                id="name"
+                                label="User name: *"
+                                label-for="input-name"
+                            >
+                                <b-form-input
+                                    id="input-name"
+                                    v-model="name"
+                                    type="text"
+                                    placeholder="Enter user name"
+                                    required
+                                ></b-form-input>
+                            </b-form-group>
+
+                            <b-form-group
+                                id="email"
+                                label="User email: *"
+                                label-for="input-email"
+                            >
+                                <b-form-input
+                                    id="input-email"
+                                    v-model="email"
+                                    type="email"
+                                    placeholder="Enter user email"
+                                    required
+                                ></b-form-input>
+                            </b-form-group>
+
+                            <b-form-group
+                                id="phone"
+                                label="User phone number:"
+                                label-for="input-phone"
+                            >
+                                <b-form-input
+                                    id="input-phone"
+                                    v-model="phone_number"
+                                    type="text"
+                                    placeholder="Enter user phone number"
+                                ></b-form-input>
+                            </b-form-group>
+
+                            <b-form-group
+                                id="address"
+                                label="User address:"
+                                label-for="input-address"
+                            >
+                                <b-form-input
+                                    id="input-address"
+                                    v-model="address"
+                                    type="text"
+                                    placeholder="Enter user address"
+                                ></b-form-input>
+                            </b-form-group>
+                            <b-row class="text-center justify-content-center" >
+
+                                <b-col cols="4">
+<!--                                    <b-button type="reset" variant="warning">Reset</b-button>-->
+                                    <b-button type="button"
+                                              variant="primary"
+                                              @click="updateInfo"
+
+                                    >Update</b-button>
+                                </b-col>
+                            </b-row>
+
+                        </b-form>
+
 
                     </div>
 <!--                </div>-->
@@ -57,6 +125,7 @@ export default {
             email: '',
             phone_number: '',
             avatar: '',
+            address: '',
             imageUpdate: {
                 name: null,
                 res: null,
@@ -78,10 +147,16 @@ export default {
                 this.name = data.name;
                 this.email = data.email;
                 this.phone_number = data.phone_number;
-                this.avatar = data.avatar
+                this.avatar = data.avatar;
+                this.address = data.address;
             } else {
                 this.error(response.statusText);
             }
+        },
+        async updateInfo() {
+            console.log('updateInfo')
+            // can't submit
+            // event.preventDefault()
         },
 
         async upload (event) {
