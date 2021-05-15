@@ -1,45 +1,47 @@
 <template>
-    <div>
+    <div class="comp-user">
         <div class="content">
             <div class="container-fluid">
                 <div class="container">
-                    <div class="block-header-profile">
-                        User profile
+                    <div class="block-header-profile mb-3">
+                        <div class="header-item font-color-black">
+                            User profile
+                        </div>
                     </div>
-                    <div>
+                    <div class="block-content-profile">
 
                     </div>
-                </div>
-
-<!--                <div>-->
-<!--                    <h4>Update avatar user</h4>-->
-<!--                    <Upload type="drag"-->
-<!--                            :format="['jpg','jpeg','png']"-->
-<!--                            name="image"-->
-<!--                            :max-size="2048"-->
-<!--                            :on-success="handleSuccess"-->
-<!--                            :on-format-error="handleFormatError"-->
-<!--                            :on-error="handleError"-->
-<!--                            :on-exceeded-size="handleMaxSize"-->
-<!--                            :before-upload="handleUpload"-->
-<!--                            :show-upload-list="true"-->
-<!--                            action="api/user/maskFunction">-->
-
-<!--                        <div class="block-content-upload">-->
-<!--                            <Icon class="icon-upload-color" type="ios-cloud-upload" size="52"></Icon>-->
-<!--                            <p>Click or drag files here to upload</p>-->
-
-<!--                        </div>-->
-
-<!--                    </Upload>-->
-<!--                    <div v-if="this.imageUpdate.data != null">-->
-<!--                        <img alt="tmp" :src="'data:image/jpeg;base64, ' + this.imageUpdate.data" />-->
-<!--                    </div>-->
-<!--                    <div v-else-if="this.avatar != null">-->
-<!--                        <img alt="tmp" :src="'data:image/jpeg;base64, ' + this.avatar" />-->
-<!--                    </div>-->
-
 <!--                </div>-->
+
+<!--&lt;!&ndash;                <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h4>Update avatar user</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <Upload type="drag"&ndash;&gt;-->
+<!--&lt;!&ndash;                            :format="['jpg','jpeg','png']"&ndash;&gt;-->
+<!--&lt;!&ndash;                            name="image"&ndash;&gt;-->
+<!--&lt;!&ndash;                            :max-size="2048"&ndash;&gt;-->
+<!--&lt;!&ndash;                            :on-success="handleSuccess"&ndash;&gt;-->
+<!--&lt;!&ndash;                            :on-format-error="handleFormatError"&ndash;&gt;-->
+<!--&lt;!&ndash;                            :on-error="handleError"&ndash;&gt;-->
+<!--&lt;!&ndash;                            :on-exceeded-size="handleMaxSize"&ndash;&gt;-->
+<!--&lt;!&ndash;                            :before-upload="handleUpload"&ndash;&gt;-->
+<!--&lt;!&ndash;                            :show-upload-list="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                            action="api/user/maskFunction">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <div class="block-content-upload">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <Icon class="icon-upload-color" type="ios-cloud-upload" size="52"></Icon>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <p>Click or drag files here to upload</p>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    </Upload>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div v-if="this.imageUpdate.data != null">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <img alt="tmp" :src="'data:image/jpeg;base64, ' + this.imageUpdate.data" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div v-else-if="this.avatar != null">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <img alt="tmp" :src="'data:image/jpeg;base64, ' + this.avatar" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+
+                </div>
 
 
             </div>
@@ -141,3 +143,8 @@ export default {
 
 }
 </script>
+
+
+<style scoped>
+
+</style>

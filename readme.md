@@ -1,9 +1,21 @@
-### Catch all route laravle
+### Catch all route laravel
   https://mauricius.dev/laravel-catch-all-route-for-vue-single-page-applications/ : Uy tin luon
 
 ### Laravel Generator:
 https://www.infyom.com/open-source/laravelgenerator/docs/7.0/installation : : Uy tin luon
   
+
+### Issue Sass in project
+Document Link: 
+1: https://cli.vuejs.org/guide/css.html#pre-processors
+2: https://github.com/yenshih/style-resources-loader
+
+Current Link: 2
+Position: "Prepends variables and mixins to all scss files with default resources injector."
+
+
+
+
 ###Link: demo project
 
 ###Document:

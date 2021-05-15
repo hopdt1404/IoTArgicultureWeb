@@ -1,25 +1,16 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Variables
-@import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Group resources
+@import './layouts/variables';
+@import './layouts/theming';
+@import './layouts/mixins';
 @import "layouts/common";
+@import "./layouts/pages";
 
-.text-center {
-    text-align: center;
-}
-.font-color-black {
-    color: #000000;
-}
-.font-size-header-content {
-    font-size: 2em;
-}
-.block-header-profile {
-    //.text-center;
-    //.font-color-black;
-    //.font-size-header-content;
-}
+
+// elements sass
+@import 'layouts/base';

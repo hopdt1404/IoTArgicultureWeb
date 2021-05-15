@@ -1,6 +1,5 @@
+
 require('./bootstrap');
-require('./../css/main.css')
-require('./../sass/app.scss')
 
 import store from './src/store/store';
 window.Vue = require('vue')

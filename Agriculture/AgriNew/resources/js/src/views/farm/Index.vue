@@ -10,7 +10,6 @@
                         </b-col>
 
                     </b-row>
-
                 </div>
                 <div>
                     <b-table striped hover bordered
