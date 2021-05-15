@@ -3,14 +3,14 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="container">
-                    <div class="block-header-profile">
-                        <div class="temp">
+                    <div class="block-header-profile mb-3">
+                        <div class="header-item font-color-black">
                             User profile
                         </div>
                     </div>
-<!--                    <div>-->
+                    <div class="block-content-profile">
 
-<!--                    </div>-->
+                    </div>
 <!--                </div>-->
 
 <!--&lt;!&ndash;                <div>&ndash;&gt;-->
