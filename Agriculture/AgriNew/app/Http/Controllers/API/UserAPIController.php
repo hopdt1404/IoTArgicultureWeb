@@ -85,6 +85,17 @@ class UserAPIController extends AppBaseController
         //
     }
 
+    public function getAvatar($id, Request $request) {
+        try {
+            $avatar = $this->model->select('avatar')->where('id', $id)->first();
+            return $this->sendResponse($avatar,'getAvatar  success');
+        } catch (Exception $ex){
+            Log::error('UserAPIController@getAvatar:' . $ex->getMessage().$ex->getTraceAsString());
+            return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
     /**
      * Update the specified resource in storage.
      *

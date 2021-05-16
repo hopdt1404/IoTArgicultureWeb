@@ -99,16 +99,27 @@
 <!--                                            :on-format-error="handleFormatError"-->
 <!--                                            :on-error="handleError"-->
 <!--                                            :on-exceeded-size="handleMaxSize"-->
-<!--                                            :before-upload="handleUpload"-->
+<!--                                            -->
 <!--                                            :show-upload-list="true"-->
 <!--                                            action="api/user/updateImageProfile">-->
 <!--                                            maskFunction-->
 <!--                                            updateImageProfile-->
 <!--                                            Upload avatar-->
 <!--                                        </Upload>-->
-                                        <Upload action="api/user/updateImageProfile"
-                                                :headers="{'x-csrf-token' : token, 'X-Requested-With' : 'XMLHttpRequest'}"
-                                                name="image">
+                                        <Upload
+                                            ref="upload"
+                                            :headers="{'x-csrf-token' : token, 'X-Requested-With' : 'XMLHttpRequest'}"
+                                            name="image"
+                                            type="drag"
+                                            :format="['jpg','jpeg','png']"
+                                            :max-size="2048"
+                                            :on-format-error="handleFormatError"
+                                            :on-error="handleError"
+                                            :on-success="handleSuccess"
+                                            :on-exceeded-size="handleMaxSize"
+                                            :before-upload="handleBeforeUpload"
+                                            action="api/user/updateImageProfile">
+
                                             <Button icon="ios-cloud-upload-outline">Upload files</Button>
                                         </Upload>
                                         <div v-if="imageUpdate !== null">File: {{ imageUpdate.name }}</div>
@@ -218,10 +229,21 @@ export default {
             }
 
         },
-        handleSuccess (file) {
-            // this.file.name = file;
+        async handleSuccess (res, file) {
+            if (res.success) {
+                let params = {
+                    hello: 'hello'
+                }
+                let result = await this.callApi('get', 'user/getAvatar/' + this.userId, params);
+                if (result.status === 200) {
+                    this.avatar = result.data.data.avatar
 
-            console.log('file handleSuccess', file)
+                }
+            } else {
+
+            }
+            // console.log('file handleSuccess', file)
+            // console.log('res handleSuccess', res)
         },
 
         handleError(res, file) {
@@ -236,11 +258,10 @@ export default {
             this.warning('Exceeding file size limit',
                 'File  ' + file.name + ' is too large, no more than 2M.');
         },
-        handleUpload (file) {
-            this.imageUpdate = file;
-            return false;
-        },
+        handleBeforeUpload(file) {
 
+            return true;
+        }
 
 
     },
