@@ -75,7 +75,7 @@
                             >
                                 <b-row class="justify-content-center" >
                                     <b-col cols="4">
-                                        <b-img v-if="avatar != null" center :src="'data:image/jpeg;base64, ' + this.avatar" class="avatar-image-size-display" fluid alt="Update avatar">
+                                        <b-img v-if="avatar !== ''" center :src="'data:image/jpeg;base64, ' + this.avatar" class="avatar-image-size-display" fluid alt="Update avatar">
                                         </b-img>
                                         <b-img v-else src="https://4xucy2kyby51ggkud2tadg3d-wpengine.netdna-ssl.com/wp-content/uploads/sites/37/2017/02/IAFOR-Blank-Avatar-Image.jpg"></b-img>
 
