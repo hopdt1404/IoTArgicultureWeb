@@ -20,6 +20,7 @@
                                     v-model="name"
                                     type="text"
                                     placeholder="Enter user name"
+                                    max="128"
                                     required
                                 ></b-form-input>
                             </b-form-group>
@@ -34,6 +35,7 @@
                                     v-model="email"
                                     type="email"
                                     placeholder="Enter user email"
+                                    max="128"
                                     required
                                 ></b-form-input>
                             </b-form-group>
@@ -47,6 +49,7 @@
                                     id="input-phone"
                                     v-model="phone_number"
                                     type="text"
+                                    max="15"
                                     placeholder="Enter user phone number"
                                 ></b-form-input>
                             </b-form-group>
@@ -60,6 +63,7 @@
                                     id="input-address"
                                     v-model="address"
                                     type="text"
+                                    max="255"
                                     placeholder="Enter user address"
                                 ></b-form-input>
                             </b-form-group>
@@ -121,6 +125,7 @@
 export default {
     data () {
         return {
+            userId: '',
             name: '',
             email: '',
             phone_number: '',
@@ -144,6 +149,7 @@ export default {
             let response = await this.callApi('get','user', params);
             if (response.status === 200) {
                 let data = response.data.data;
+                this.userId = data.id;
                 this.name = data.name;
                 this.email = data.email;
                 this.phone_number = data.phone_number;
@@ -153,10 +159,25 @@ export default {
                 this.error(response.statusText);
             }
         },
+
         async updateInfo() {
             console.log('updateInfo')
-            // can't submit
-            // event.preventDefault()
+
+            let params = {
+                name: this.name,
+                email: this.email,
+                phone_number: this.phone_number,
+                address: this.address
+            }
+            let response = await this.callApi('post','user/' + this.userId, params);
+            if (response.status === 200) {
+                this.file = null;
+                this.loadingStatus = false;
+                console.log(response);
+                this.success(response.data.message);
+            } else {
+                this.error(response.data.message);
+            }
         },
 
         async upload (event) {
