@@ -84,28 +84,6 @@
                                 </b-row>
                                 <b-row class="text-center justify-content-center">
                                     <b-col cols="3">
-<!--                                        <Button icon="ios-cloud-upload-outline" @click="modal =! modal">Upload image</Button>-->
-<!--                                        <Modal title="Form update avarta"-->
-<!--                                               v-model="modal">-->
-<!--&lt;!&ndash;                                            <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">&ndash;&gt;-->
-<!--                                        </Modal>-->
-<!--                                        <Upload-->
-<!--                                            type="drag"-->
-<!--                                            ref="upload"-->
-<!--                                            :format="['jpg','jpeg','png']"-->
-<!--                                            name="image"-->
-<!--                                            :max-size="2048"-->
-<!--                                            :on-success="handleSuccess"-->
-<!--                                            :on-format-error="handleFormatError"-->
-<!--                                            :on-error="handleError"-->
-<!--                                            :on-exceeded-size="handleMaxSize"-->
-<!--                                            -->
-<!--                                            :show-upload-list="true"-->
-<!--                                            action="api/user/updateImageProfile">-->
-<!--                                            maskFunction-->
-<!--                                            updateImageProfile-->
-<!--                                            Upload avatar-->
-<!--                                        </Upload>-->
                                         <Upload
                                             ref="upload"
                                             :headers="{'x-csrf-token' : token, 'X-Requested-With' : 'XMLHttpRequest'}"
@@ -118,6 +96,7 @@
                                             :on-success="handleSuccess"
                                             :on-exceeded-size="handleMaxSize"
                                             :before-upload="handleBeforeUpload"
+                                            :on-remove="deleteProfileImage"
                                             action="api/user/updateImageProfile">
 
                                             <Button icon="ios-cloud-upload-outline">Upload files</Button>
@@ -244,6 +223,17 @@ export default {
             }
             // console.log('file handleSuccess', file)
             // console.log('res handleSuccess', res)
+        },
+
+        async deleteProfileImage () {
+            let result = await this.callApi('post', 'user/deleteAvatar/' + this.userId);
+            console.log(result)
+            if (result.status === 200) {
+                let resultUpdate = await this.callApi('get', 'user/getAvatar/' + this.userId);
+                if (resultUpdate.status === 200) {
+                    this.avatar = resultUpdate.data.data.avatar
+                }
+            }
         },
 
         handleError(res, file) {
