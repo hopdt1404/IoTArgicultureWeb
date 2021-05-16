@@ -67,6 +67,23 @@
                                     placeholder="Enter user address"
                                 ></b-form-input>
                             </b-form-group>
+
+                            <b-form-group
+                            id="avatar"
+                            label="Avatar: "
+                            label-for="avatar"
+                            >
+                                <b-row class="justify-content-center" >
+                                    <b-col cols="4">
+                                        <b-img v-if="avatar != null" center :src="'data:image/jpeg;base64, ' + this.avatar" class="avatar-image-size-display" fluid alt="Update avatar"></b-img>
+                                        <b-img v-else src="https://4xucy2kyby51ggkud2tadg3d-wpengine.netdna-ssl.com/wp-content/uploads/sites/37/2017/02/IAFOR-Blank-Avatar-Image.jpg"></b-img>
+                                    </b-col>
+                                </b-row>
+
+<!--                                <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>-->
+
+
+                            </b-form-group>
                             <b-row class="text-center justify-content-center" >
 
                                 <b-col cols="4">
@@ -122,7 +139,13 @@
 </template>
 
 <script>
+import globalProperties from "../../../../assets/globalProperties/globalProperties";
+
 export default {
+    components: {
+        globalProperties
+    },
+
     data () {
         return {
             userId: '',
@@ -137,7 +160,14 @@ export default {
                 data: null
             },
             uploadList: [],
-            base64Img: null
+            base64Img: null,
+            mainPropsEmptyImage: {
+                blank: true,
+                blankColor: '#777',
+                width: 75,
+                height: 75,
+                class: 'm1'
+            }
         }
     },
     methods: {

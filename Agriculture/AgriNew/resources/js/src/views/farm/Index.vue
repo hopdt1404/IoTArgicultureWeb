@@ -108,7 +108,7 @@
 
 
 <script>
-import globalProperties from "../../assets/globalProperties/globalProperties";
+import globalProperties from "../../../../assets/globalProperties/globalProperties";
 export default {
     components: {
         globalProperties
