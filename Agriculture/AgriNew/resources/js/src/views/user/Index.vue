@@ -75,19 +75,50 @@
                             >
                                 <b-row class="justify-content-center" >
                                     <b-col cols="4">
-                                        <b-img v-if="avatar != null" center :src="'data:image/jpeg;base64, ' + this.avatar" class="avatar-image-size-display" fluid alt="Update avatar"></b-img>
+                                        <b-img v-if="avatar != null" center :src="'data:image/jpeg;base64, ' + this.avatar" class="avatar-image-size-display" fluid alt="Update avatar">
+                                        </b-img>
                                         <b-img v-else src="https://4xucy2kyby51ggkud2tadg3d-wpengine.netdna-ssl.com/wp-content/uploads/sites/37/2017/02/IAFOR-Blank-Avatar-Image.jpg"></b-img>
+
+                                    </b-col>
+
+                                </b-row>
+                                <b-row class="text-center justify-content-center">
+                                    <b-col cols="3">
+<!--                                        <Button icon="ios-cloud-upload-outline" @click="modal =! modal">Upload image</Button>-->
+<!--                                        <Modal title="Form update avarta"-->
+<!--                                               v-model="modal">-->
+<!--&lt;!&ndash;                                            <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">&ndash;&gt;-->
+<!--                                        </Modal>-->
+<!--                                        <Upload-->
+<!--                                            type="drag"-->
+<!--                                            ref="upload"-->
+<!--                                            :format="['jpg','jpeg','png']"-->
+<!--                                            name="image"-->
+<!--                                            :max-size="2048"-->
+<!--                                            :on-success="handleSuccess"-->
+<!--                                            :on-format-error="handleFormatError"-->
+<!--                                            :on-error="handleError"-->
+<!--                                            :on-exceeded-size="handleMaxSize"-->
+<!--                                            :before-upload="handleUpload"-->
+<!--                                            :show-upload-list="true"-->
+<!--                                            action="api/user/updateImageProfile">-->
+<!--                                            maskFunction-->
+<!--                                            updateImageProfile-->
+<!--                                            Upload avatar-->
+<!--                                        </Upload>-->
+                                        <Upload action="api/user/updateImageProfile"
+                                                :headers="{'x-csrf-token' : token, 'X-Requested-With' : 'XMLHttpRequest'}"
+                                                name="image">
+                                            <Button icon="ios-cloud-upload-outline">Upload files</Button>
+                                        </Upload>
+                                        <div v-if="imageUpdate !== null">File: {{ imageUpdate.name }}</div>
                                     </b-col>
                                 </b-row>
-
-<!--                                <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>-->
-
 
                             </b-form-group>
                             <b-row class="text-center justify-content-center" >
 
                                 <b-col cols="4">
-<!--                                    <b-button type="reset" variant="warning">Reset</b-button>-->
                                     <b-button type="button"
                                               variant="primary"
                                               @click="updateInfo"
@@ -100,36 +131,6 @@
 
 
                     </div>
-<!--                </div>-->
-
-<!--&lt;!&ndash;                <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <h4>Update avatar user</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <Upload type="drag"&ndash;&gt;-->
-<!--&lt;!&ndash;                            :format="['jpg','jpeg','png']"&ndash;&gt;-->
-<!--&lt;!&ndash;                            name="image"&ndash;&gt;-->
-<!--&lt;!&ndash;                            :max-size="2048"&ndash;&gt;-->
-<!--&lt;!&ndash;                            :on-success="handleSuccess"&ndash;&gt;-->
-<!--&lt;!&ndash;                            :on-format-error="handleFormatError"&ndash;&gt;-->
-<!--&lt;!&ndash;                            :on-error="handleError"&ndash;&gt;-->
-<!--&lt;!&ndash;                            :on-exceeded-size="handleMaxSize"&ndash;&gt;-->
-<!--&lt;!&ndash;                            :before-upload="handleUpload"&ndash;&gt;-->
-<!--&lt;!&ndash;                            :show-upload-list="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                            action="api/user/maskFunction">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        <div class="block-content-upload">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <Icon class="icon-upload-color" type="ios-cloud-upload" size="52"></Icon>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <p>Click or drag files here to upload</p>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                    </Upload>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div v-if="this.imageUpdate.data != null">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <img alt="tmp" :src="'data:image/jpeg;base64, ' + this.imageUpdate.data" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div v-else-if="this.avatar != null">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <img alt="tmp" :src="'data:image/jpeg;base64, ' + this.avatar" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-
                 </div>
 
 
@@ -139,12 +140,9 @@
 </template>
 
 <script>
-import globalProperties from "../../../../assets/globalProperties/globalProperties";
+
 
 export default {
-    components: {
-        globalProperties
-    },
 
     data () {
         return {
@@ -154,24 +152,17 @@ export default {
             phone_number: '',
             avatar: '',
             address: '',
-            imageUpdate: {
-                name: null,
-                res: null,
-                data: null
-            },
+            imageUpdate: null,
+            loadingStatus: false,
             uploadList: [],
             base64Img: null,
-            mainPropsEmptyImage: {
-                blank: true,
-                blankColor: '#777',
-                width: 75,
-                height: 75,
-                class: 'm1'
-            }
+            modal: false,
+            token: '',
         }
     },
     methods: {
         async initData () {
+            this.token = window.Laravel.csrfToken;
             let params = {
                 id: 1
             }
@@ -214,7 +205,7 @@ export default {
             this.loadingStatus = true;
             console.log('file ' + this.file)
             let params = {
-                image: this.file,
+                image: this.imageUpdate,
                 id: 1
             }
             let response = await this.callApi('post','user/updateImageProfile', params);
@@ -227,12 +218,10 @@ export default {
             }
 
         },
-        handleSuccess (res, file) {
-            this.file.res = res;
-            this.file.name = file;
+        handleSuccess (file) {
+            // this.file.name = file;
 
             console.log('file handleSuccess', file)
-            console.log('res handleSuccess', res)
         },
 
         handleError(res, file) {
@@ -248,13 +237,8 @@ export default {
                 'File  ' + file.name + ' is too large, no more than 2M.');
         },
         handleUpload (file) {
-            let reader = new FileReader();
-            // reader.onloadend = function() {
-            //     console.log('RESULT', reader.result)
-            //
-            // }
-            // let temp = reader.readAsDataURL(file);
-            // this.imageUpdate.data = reader.result
+            this.imageUpdate = file;
+            return false;
         },
 
 
