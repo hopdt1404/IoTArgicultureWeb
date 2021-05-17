@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="block-btn-add-item">
                     <b-row align-h="end">
-                        <b-col cols="2" align-self="center"
+                        <b-col cols="1" align-self="center"
                                align-content="end">
                             <Button type="primary" @click="showModal"><Icon type="ios-add" />Add farm</Button>
                         </b-col>
