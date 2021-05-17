@@ -5,6 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>IoT Agri</title>
+        <script>
+            (function () {
+                window.Laravel = {
+                    csrfToken: '{{ csrf_token() }}'
+                };
+            })();
+        </script>
 
     </head>
     <body>

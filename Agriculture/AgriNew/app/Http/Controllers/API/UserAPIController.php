@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UploadImageAPIRequest;
 use App\Models\Users;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -83,16 +85,54 @@ class UserAPIController extends AppBaseController
         //
     }
 
+    public function getAvatar($id, Request $request) {
+        try {
+            $avatar = $this->model->select('avatar')->where('id', $id)->first();
+            Log::info('$avatar');
+            Log::info($avatar);
+            return $this->sendResponse($avatar,'getAvatar  success');
+        } catch (Exception $ex){
+            Log::error('UserAPIController@getAvatar:' . $ex->getMessage().$ex->getTraceAsString());
+            return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    public function deleteAvatar($id) {
+        try {
+            $this->model->where('id', $id)->update(['avatar' => '']);
+            return $this->sendSuccess('getAvatar  success');
+        } catch (Exception $ex){
+            Log::error('UserAPIController@deleteAvatar:' . $ex->getMessage().$ex->getTraceAsString());
+            return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CreateUserAPIRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, CreateUserAPIRequest $request)
     {
-        //
+        $data = $request->all();
+        $user = $request->user();
+        $userName = isset($user) ? $user->email : 'hopdt';
+        $data['updated_at'] = Carbon::now();
+//        $data['updated_user'] = $userName;
+        try {
+            $this->model->where([
+                'id' => $id,
+                'email' => $data['email']
+            ])->update($data);
+            return $this->sendSuccess('Update data success');
+        } catch (Exception $ex){
+            Log::error('UserAPIController@update:' . $ex->getMessage().$ex->getTraceAsString());
+            return $this->sendError(Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

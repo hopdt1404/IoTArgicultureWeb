@@ -38,7 +38,7 @@ export default {
                 desc: message ? message : 'Here is the notification description. Here is the notification description. '
             });
         },
-        error (message, title = 'Warning notification') {
+        error (message, title = 'Error notification') {
             this.$Notice.error({
                 title: title,
                 desc: message ? message : 'Here is the notification description. Here is the notification description. '
