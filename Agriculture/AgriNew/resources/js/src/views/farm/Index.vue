@@ -13,11 +13,14 @@
                 </div>
                 <div>
                     <b-table striped hover bordered
-                             @row-dblclicked="expandAdditionalInfo"
+                             @row-dblclicked="showDialog"
                              :items="farms"
                              :fields="columnsTable"
                              v-if="farms.length > 0">
-                        <template>
+                        <template #cell(status)="data">
+                            {{ data.item.status === 1 ? 'activate' :
+                               data.item.status === 0  ? 'deactivate' :
+                               data.item.status === 2  ? 'maintain' : ''}}
 
                         </template>
 
@@ -79,15 +82,15 @@
                                 </b-col>
                                 <b-col cols="12">
                                     <RadioGroup id="status" v-model="status">
-                                        <Radio label="activate">
+                                        <Radio label="1">
                                             <Icon type="logo-apple"></Icon>
                                             <span>Activate</span>
                                         </Radio>
-                                        <Radio label="deactivate">
+                                        <Radio label="0">
                                             <Icon type="logo-android"></Icon>
                                             <span>Deactivate</span>
                                         </Radio>
-                                        <Radio label="maintain">
+                                        <Radio label="2">
                                             <Icon type="logo-windows"></Icon>
                                             <span>Maintain</span>
                                         </Radio>
@@ -152,7 +155,6 @@ export default {
     methods: {
 
         async save() {
-            this.postStatus();
             let response = '';
             let params = {
                 name: this.name,
@@ -184,69 +186,29 @@ export default {
             this.name = '';
             this.area = '';
         },
-        postStatus () {
-            if (this.status === globalProperties.ACTIVATE_STATUS.value) {
-                this.status = globalProperties.ACTIVATE_STATUS.key
-            } else {
-                if (this.status === globalProperties.DEACTIVATE_STATUS.value) {
-                    this.status = globalProperties.DEACTIVATE_STATUS.key
-                } else {
-                    this.status = globalProperties.MAINTAIN_STATUS.key
-                }
-            }
-            console.log(this.status)
-        },
         async getFarms() {
             let response = await this.callApi('get','farm');
             if (response.status === 200) {
-                let dataResult = response.data.data;
-
-                dataResult.forEach((item, index) => {
-                    this.statusKeyToValue(item)
-                });
-
-                this.farms = dataResult
-                // console.log(this.farms);
-                // this.success(response.statusText);
-                // return dataResult;
-                /* Three action return message ok*/
-                // this.error(response.statusText);
-                // this.warning(response.statusText);
-                // this.info(response.statusText);
+                this.farms = response.data.data
             } else {
                 this.error(response.statusText);
-                // return '';
             }
         },
-        // Todo: watch video
 
 
-        async expandAdditionalInfo(row) {
+        async showDialog(row) {
             this.modal = ! this.modal
             let response = await this.callApi('get','farm/' + row.id);
             if (response.status === 200) {
-                let farm = this.statusKeyToValue(response.data.data);
+                let farm = response.data.data;
                 this.name = farm.name
                 this.area = farm.area
-                this.status = farm.status
+                this.status = `${farm.status}`
                 this.farmId = farm.id
             } else {
                 this.error(response.statusText);
             }
         },
-
-        statusKeyToValue (item) {
-            if (item.status === globalProperties.ACTIVATE_STATUS.key) {
-                item.status = globalProperties.ACTIVATE_STATUS.value
-            } else {
-                if (item.status === globalProperties.DEACTIVATE_STATUS.key) {
-                    item.status = globalProperties.DEACTIVATE_STATUS.value
-                } else {
-                    item.status = globalProperties.MAINTAIN_STATUS.value
-                }
-            }
-            return item;
-        }
 
 
     },
