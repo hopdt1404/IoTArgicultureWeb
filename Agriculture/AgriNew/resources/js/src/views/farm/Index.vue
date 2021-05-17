@@ -192,7 +192,6 @@ export default {
                 this.farms = response.data.data
             } else {
                 this.error(response.statusText);
-                // return '';
             }
         },
 
@@ -210,19 +209,6 @@ export default {
                 this.error(response.statusText);
             }
         },
-
-        statusKeyToValue (item) {
-            if (item.status === globalProperties.ACTIVATE_STATUS.key) {
-                item.status = globalProperties.ACTIVATE_STATUS.value
-            } else {
-                if (item.status === globalProperties.DEACTIVATE_STATUS.key) {
-                    item.status = globalProperties.DEACTIVATE_STATUS.value
-                } else {
-                    item.status = globalProperties.MAINTAIN_STATUS.value
-                }
-            }
-            return item;
-        }
 
 
     },
