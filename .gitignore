@@ -104,3 +104,4 @@ cmake-build-*/
 **/*.class
 
 **/target/**
+.idea/
