@@ -17,11 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/* this code to url bypass router laravel => Router VueJs */
-Route::get('/{any?}', 'AppController')
-    ->where('any', '^(?!api).*$')
-    ->name('administration');
-
 
 Auth::routes();
 
@@ -31,3 +26,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware('verified');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+/* this code to url bypass router laravel => Router VueJs */
+Route::get('/{any?}', 'AppController')
+    ->where('any', '^(?!api).*$')
+    ->name('administration');
