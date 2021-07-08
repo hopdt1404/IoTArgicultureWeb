@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Farm extends Model
 {
-    protected $table = 'farms';
+    protected $table = 'Farms';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
