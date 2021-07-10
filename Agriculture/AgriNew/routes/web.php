@@ -21,7 +21,7 @@ Auth::routes([
     'verify' => false
 ]);
 
-//Route::get('home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
 Route::get('logout', 'LoginController@logout');
 
 /* this code to url bypass router laravel => Router VueJs */
