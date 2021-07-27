@@ -16,15 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('', 'LoginController@index');
 
 //
-Auth::routes([
 
-    'verify' => false
-]);
+//Route::get('login', 'LoginController@index');
 
-Route::get('home', 'HomeController@index')->name('home');
-Route::get('logout', 'LoginController@logout');
+
 
 /* this code to url bypass router laravel => Router VueJs */
 Route::get('/{any?}', 'AppController')
     ->where('any', '^(?!api).*$')
     ->name('administration');
+
+Auth::routes([
+
+    'verify' => false
+]);
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('logout', 'LoginController@logout');
