@@ -1,7 +1,5 @@
 <template>
     <div id="app">
-        This is file App.vue
-        // Define navbar component in this file
         <div>
             <!--========== ADMIN SIDE MENU one ========-->
             <div class="_1side_menu" >
@@ -44,11 +42,30 @@
             <div class="header">
                 <div class="_2menu _box_shadow">
                     <div class="_2menu_logo">
-                        <ul class="open_button">
-                            <li>
+                        <div v-if="userId != null">
+                            <li >
                                 <Icon type="ios-list" />
                             </li>
-                            <!--<li><Icon type="ios-albums" /></li>-->
+                            <li>
+
+                            </li>
+
+
+                        </div>
+                        <b-row v-else class>
+
+                                <router-link to="login" style="color: #6c757d"> Login</router-link>
+
+
+                                <router-link to="register" style="color: #6c757d"> Register</router-link>
+
+                        </b-row>
+                        <ul class="open_button">
+
+
+                            <li>
+
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -58,6 +75,28 @@
         <router-view></router-view>
     </div>
 </template>
+
+<script>
+// import
+export default {
+    data() {
+        return {
+            userId: null,
+            username: ''
+        }
+    },
+    created() {
+
+    },
+    methods: {
+        logout (event) {
+            event.preventDefault();
+            document.getElementById('logout-form').submit();
+        }
+    }
+
+}
+</script>
 
 
 <style lang="scss">

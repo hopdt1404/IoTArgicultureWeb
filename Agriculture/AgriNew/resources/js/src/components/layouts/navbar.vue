@@ -1,4 +1,6 @@
+<template>
 
+</template>
 
 <style lang="sass">
 

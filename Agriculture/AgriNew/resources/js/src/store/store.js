@@ -8,11 +8,20 @@ export default {
         /* method call api  */
         async callApi(method, url, data, config = null) {
             try {
+                if (config == null ) {
+                    config = {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + $('meta[name="csrf-token"]').attr('content')
+                        }
+                    }
+                }
+                console.log(config);
                 return await axios({
                     method: method,
                     url: 'api/' + url,
                     data: data,
-                    config: config
+                    config: config,
                 });
             } catch (e) {
                 return e.response

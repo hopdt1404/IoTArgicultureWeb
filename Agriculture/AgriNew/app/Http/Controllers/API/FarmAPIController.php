@@ -13,7 +13,6 @@ use PHPUnit\Util\Exception;
 
 class FarmAPIController extends AppBaseController
 {
-    var $table = 'farms';
     var $model = null;
 
     public function __construct(Farm $farm)
@@ -37,7 +36,7 @@ class FarmAPIController extends AppBaseController
         $userId = isset($user) ? $user->id : 0;
         try {
             $farms = $this->model->where([
-                'user_id' => $userId
+                'UserID' => $userId
             ])->get();
             return $this->sendResponse($farms, 'Get data success');
         } catch (Exception $ex){
@@ -87,7 +86,7 @@ class FarmAPIController extends AppBaseController
         $data = $request->all();
         $data['created_user'] = 'hopdt';
         $data['created_at'] = Carbon::now();;
-        $data['user_id'] = isset($user->id) ? $user->id : 0;
+        $data['UserID'] = isset($user->id) ? $user->id : 0;
         try {
             $this->model->insert($data);
             return $this->sendSuccess('Success create data');

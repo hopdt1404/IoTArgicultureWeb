@@ -11,8 +11,14 @@ import Plant from './src/views/plant/Index'
 import SettingAgriculture from './src/views/setting_agriculture/Index'
 import Methods from './src/components/methods/index'
 import Hooks from './src/components/hooks/index'
+import Login from './src/components/auth/Login'
 
 const routes = [
+    {
+        path: 'login',
+        name: 'login',
+        component: Login
+    },
     {
         path: '/home',
         name: 'home',

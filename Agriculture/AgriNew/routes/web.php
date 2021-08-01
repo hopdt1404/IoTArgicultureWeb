@@ -13,21 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('', 'LoginController@index');
+
+//
+
+//Route::get('login', 'LoginController@index');
+
+
 
 /* this code to url bypass router laravel => Router VueJs */
 Route::get('/{any?}', 'AppController')
     ->where('any', '^(?!api).*$')
     ->name('administration');
 
+Auth::routes([
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
-Auth::routes(['verify' => true]);
-
-Route::get('/home', 'HomeController@index')->middleware('verified');
+    'verify' => false
+]);
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('logout', 'LoginController@logout');

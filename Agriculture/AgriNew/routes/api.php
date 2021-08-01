@@ -14,16 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
-Route::resource('farm', 'FarmAPIController');
+//Route::middleware(['auth:api', 'cors', 'json.response'])->group(function () {
+    Route::resource('farm', 'FarmAPIController');
 
-Route::resource('user', 'UserAPIController');
-Route::post('user/updateImageProfile', 'UserAPIController@updateImageProfile');
-Route::get('user/getAvatar/{id}', 'UserAPIController@getAvatar');
-Route::post('user/deleteAvatar/{id}', 'UserAPIController@deleteAvatar');
-Route::post('/user/{id}', 'UserAPIController@update');
-Route::post('user/maskFunction', 'UserAPIController@maskFunction');
+    Route::resource('user', 'UserAPIController');
+    Route::post('user/updateImageProfile', 'UserAPIController@updateImageProfile');
+    Route::get('user/getAvatar/{id}', 'UserAPIController@getAvatar');
+    Route::post('user/deleteAvatar/{id}', 'UserAPIController@deleteAvatar');
+    Route::post('/user/{id}', 'UserAPIController@update');
+    Route::post('user/maskFunction', 'UserAPIController@maskFunction');
+//});
+
+
 
