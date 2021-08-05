@@ -3,9 +3,7 @@ package DAO;
 import Utilities.Helper;
 import model.User;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +39,7 @@ public class UserDao implements Dao<User> {
     public User getByUsernameAndPassword(String username, String password){
         User user = null;
         Statement statement=null;
-        String upassword = Helper.md5(password);
+        String upassword = password;
         try {
             statement = dbConnector.getConnection().createStatement();
             String sql = "Select * from Users where UserName = '" + username+"' and UPassword = '"+upassword+"';";
@@ -115,6 +113,22 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void update(User t_old, User t_new) {
+        try {
+            Connection connection = dbConnector.getConnection();
+            String query = "UPDATE Users SET UserName=?, UPassword=? WHERE UserID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, t_new.getUserName());
+            preparedStatement.setString(2, t_new.getPassword());
+            preparedStatement.setInt(3, t_old.getUserID());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            System.out.println(rowsAffected + " Rows affected.");
+            System.out.println("User with id " + t_old.getUserID() + " was updated in DB with following details: " + t_new.toString());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -3,9 +3,11 @@ import Utilities.Helper;
 import com.google.gson.stream.JsonReader;
 import model.*;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Locale;
 
 public class TestDAO {
     private static class Coord{
@@ -19,26 +21,31 @@ public class TestDAO {
     }
     public static void main(String[] args) throws IOException, InterruptedException {
 //        testLocateDao1();
-//        testUserDao();
+        testUserDao();
 //        testFarmDao();
 //        testPlotDao();
 //        testDeviceTypeDao();
 //        testDeviceDao();
 //        testSensingDao();
-        testWeatherForecastDao();
+//        testWeatherForecastDao();
     }
 
     public static void testWeatherForecastDao(){
         WeatherForecastDao weatherForecastDao = new WeatherForecastDao();
         WeatherForecast weatherForecast = new WeatherForecast();
+        // Todo: update function check latter
+        System.out.println("Before weatherForecast.update();");
         weatherForecast.update();
         System.out.println(weatherForecast);
+        System.out.println("After weatherForecast.update();");
+        // Todo: save
+        System.out.println("Before weatherForecast.weatherForecastDao.save(weatherForecast);();");
         weatherForecastDao.save(weatherForecast);
-        List<WeatherForecast> weatherForecasts = weatherForecastDao.getByLocateId("353412");
-        for(WeatherForecast wf:weatherForecasts){
-            System.out.println(wf);
-        }
-//        weatherForecastDao.save(weatherForecast)
+        System.out.println("After weatherForecast.weatherForecastDao.save(weatherForecast);();");
+//        List<WeatherForecast> weatherForecasts = weatherForecastDao.getByLocateId("353412");
+//        for(WeatherForecast wf:weatherForecasts){
+//            System.out.println(wf);
+//        }
     }
 
     public static void testWeatherForecastAtATimeDao(){
@@ -109,7 +116,16 @@ public class TestDAO {
     }
     public static void testUserDao(){
         UserDao userDao = new UserDao();
-        userDao.save(new User("admin",Helper.md5("12345678")));
+        String userName = "admin";
+        String password = Helper.md5("12345678");
+        User userUpdate = new User(userName, password);
+        User userExist = userDao.getByUsernameAndPassword(userName, password);
+        if (userExist != null && userExist.getUserID() > 0) {
+            System.out.println("userExist");
+            userDao.update(userExist, userUpdate);
+        } else {
+            userDao.save(new User(userName, password));
+        }
         List<User> users = userDao.getAll();
         for(User u:users){
             System.out.println(u.toString());
