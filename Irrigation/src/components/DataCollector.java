@@ -37,13 +37,16 @@ public class DataCollector {
             public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
                 System.out.println("messageArrived line 37 DataCollector: "+ topic);
                 if(topic.equals("/iot_agriculture/identify/farm_id/get")){
+                // Todo: CreateFarmId
                     createFarmId(mqttMessage);
                 }
                 if(topic.equals("/iot_agriculture/identify/farm_id/change")){
                     System.out.println("chang farmId");
+                    // Todo: changeFarmID: khi nao change
                     changeFarmId(mqttMessage);
                 }
                 if(topic.equals("/iot_agriculture/identify/device_id/set")){
+                // Todo: setDeviceId
                     setDeviceId(mqttMessage);
                 }
                 if(topic.equals("/iot_agriculture/status/gateway/online")){
@@ -84,9 +87,11 @@ public class DataCollector {
         if(jsonObject.get("username") instanceof String){
             username = ((String) jsonObject.get("username"));
         }else return;
+        // Todo: Password is hash in client => check is correct in server
         if(jsonObject.get("password") instanceof String){
             password = (String) jsonObject.get("password");
         }else return;
+        // Todo: RandomNumber
         if(jsonObject.get("randomNumber") instanceof Long){
             randomNumber = ((Long) jsonObject.get("randomNumber"));
         }else return;
@@ -95,11 +100,13 @@ public class DataCollector {
             mqttConnectorTemp.connect();
             JSONObject objectReturn = new JSONObject();
             objectReturn.put("farmId",(-1));
+            // Todo: check function topic
             mqttConnectorTemp.publishMessage(objectReturn.toJSONString(),"/iot_agriculture/identify/farm_id/supply/"+randomNumber);
             mqttConnectorTemp.disconnect();
             return;
         }
         FarmDao farmDao = new FarmDao();
+        // Todo: FarmID: line 109
         int farmId = farmDao.save(new Farm(null,null,null,true,null));
         JSONObject objectReturn = new JSONObject();
         objectReturn.put("farmId",farmId);
@@ -156,6 +163,7 @@ public class DataCollector {
         }
     }
 
+// Todo: verifyUser
     private static boolean verifyUser(String username, String password){
         MQTTConnector mqttConnector = new MQTTConnector();
         mqttConnector.connect();
@@ -176,7 +184,7 @@ public class DataCollector {
         }else return;
 
         DeviceDao deviceDao = new DeviceDao();
-        deviceDao.save(new Device(deviceId,null,null,true,null));
+        deviceDao.save(new Device(deviceId,null,null,0,null));
     }
 
     private static void notifyGatewayOffline(MqttMessage mqttMessage){
@@ -188,7 +196,7 @@ public class DataCollector {
         for(Device device: devices){
             System.out.println("deviceID offline: "+device.getDeviceID());
             Device newDevice = new Device(device);
-            newDevice.setStatus(Boolean.FALSE);
+            newDevice.setStatus(0);
             deviceDao.update(device,newDevice);
         }
         FarmDao farmDao = new FarmDao();
@@ -221,7 +229,7 @@ public class DataCollector {
         DeviceDao deviceDao = new DeviceDao();
         Device oldDevice = deviceDao.getById(deviceId.intValue());
         Device newDevice = new Device(oldDevice);
-        newDevice.setStatus(Boolean.FALSE);
+        newDevice.setStatus(0);
         deviceDao.update(oldDevice,newDevice);
     }
 
@@ -233,7 +241,7 @@ public class DataCollector {
             System.out.println("deviceID offline: "+(Long)deviceId);
             Device oldDevice = deviceDao.getById((Long)deviceId);
             Device newDevice = new Device(oldDevice);
-            newDevice.setStatus(Boolean.FALSE);
+            newDevice.setStatus(0);
             deviceDao.update(oldDevice,newDevice);
 
             DeviceControlUnitManager dcum = DeviceControlUnitManager.getInstance();
@@ -265,7 +273,7 @@ public class DataCollector {
                     if(setPlotDefault == true){
                         System.out.println("plot default = 1");
                         Integer plotId = 1;
-                        deviceDao.save(new Device(finalDeviceId, finalTyeDevice, null, Boolean.TRUE, plotId));
+                        deviceDao.save(new Device(finalDeviceId, finalTyeDevice, null, 1, plotId));
                         Thread.currentThread().interrupt();
                     }else {
                         Integer plotId = 1;
@@ -294,7 +302,7 @@ public class DataCollector {
                             if (isEqual == Boolean.TRUE) break;
                             System.out.println("PlotId don't exist! Retry!");
                         } while (Boolean.TRUE);
-                        Device newDevice = new Device(finalDeviceId, finalTyeDevice, null, Boolean.TRUE, plotId);
+                        Device newDevice = new Device(finalDeviceId, finalTyeDevice, null, 1, plotId);
                         deviceDao.save(newDevice);
                         if(finalTyeDevice==Helper.TypeDevice.PUMP.ordinal()) {
                             DeviceControlUnitManager dcum = DeviceControlUnitManager.getInstance();
@@ -312,7 +320,7 @@ public class DataCollector {
             thread.start();
         }else{
             Device newDevice = new Device(device);
-            newDevice.setStatus(Boolean.TRUE);
+            newDevice.setStatus(0);
             deviceDao.update(device,newDevice);
             if(typeDevice==Helper.TypeDevice.PUMP.ordinal()) {
                 DeviceControlUnitManager dcum = DeviceControlUnitManager.getInstance();

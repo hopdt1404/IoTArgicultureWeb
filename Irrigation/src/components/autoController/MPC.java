@@ -1,16 +1,23 @@
 package components.autoController;
 
-import components.controller.Controller;
+import Connector.DBConnector;
+import DAO.DeviceDao;
 import model.Device;
+import sun.awt.X11.XSystemTrayPeer;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class MPC {
     private static DeviceControlUnitManager dcum;
     private static Optimizer optimizer;
     public MPC(){
         optimizer = new Optimizer();
+        // create new DeviceControllerUnit
         dcum = DeviceControlUnitManager.getInstance();
         System.out.println("DCUM: "+dcum);
     }
@@ -28,6 +35,8 @@ public class MPC {
         boolean isPrint = false;
         while(true) {
             LocalTime now = LocalTime.now();
+            System.out.println("now");
+            System.out.println(now);
             if(now.getSecond()%30==0) {
                 if(!isPrint) System.out.println(now);
                 isPrint=true;
@@ -35,9 +44,12 @@ public class MPC {
                 isPrint=false;
             }
             if(!dcum.isEmpty()) {
+                System.out.println("if !dcum.isEmpty()");
 //                if((now.getMinute())==0){
 //                    System.out.println(now.withNano(0).withSecond(0).compareTo(dcum.peek().getLatestIrrigationTime().plusHours(1).withNano(0).withSecond(0)));
 //                }
+                System.out.println("now.withNano(0).withSecond(0)");
+                System.out.println(now.withNano(0).withSecond(0));
                 if(now.withNano(0).withSecond(0).compareTo(dcum.peek().getLatestIrrigationTime().plusHours(1).withNano(0).withSecond(0))==0){
                     System.out.println("NOW: "+now+" DCU TIME: "+dcum.peek().getLatestIrrigationTime());
                     ArrayList<DeviceControlUnit> dcus = new ArrayList<DeviceControlUnit>();
@@ -58,21 +70,33 @@ public class MPC {
                         }
                     }
                 }
+            } else {
+                System.out.println("else !dcum.isEmpty()");
             }
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
+//        System.out.println("Start Main Function");
         MPC mpc = new MPC();
-//        DeviceControlUnit dcu = new DeviceControlUnit();
-//        dcum.add(dcu);
-//        mpc.process();
-        for(int i=0;i<2;i++){
-            DeviceControlUnit dcu = new DeviceControlUnit();
-            dcum.add(dcu);
-            Thread.sleep(15000);
-        }
+//        System.out.println("new mpc: ");
+//        System.out.println(mpc);
+        System.out.println("Start Loop For");
+        // get all device status is true
+        DeviceDao deviceDao = new DeviceDao();
+        List<Device> listDevice = deviceDao.getDeviceByStatus(1);
+        System.out.println("listDevice");
+        System.out.println(listDevice);
 
+        Iterator<Device> currentDevice = listDevice.iterator();
+        System.out.println("Device Control Unit before");
+        while (currentDevice.hasNext()) {
+            DeviceControlUnit dcu = new DeviceControlUnit(currentDevice.next().getDeviceID());
+            System.out.println("dcu new ");
+            System.out.println(dcu);
+            dcum.add(dcu);
+            Thread.sleep(5000);
+        }
         mpc.process();
         //optimizer.process(dcu);
 //        LocalTime time1=LocalTime.of(23,0);

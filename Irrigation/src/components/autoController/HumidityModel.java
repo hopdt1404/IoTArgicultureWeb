@@ -1,10 +1,5 @@
 package components.autoController;
 
-import model.WeatherForecast;
-
-import java.io.IOException;
-import java.time.LocalTime;
-
 import model.WeatherForecastAtATime;
 import org.deeplearning4j.nn.modelimport.keras.KerasModelImport;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurationException;
@@ -12,10 +7,13 @@ import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfig
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
-import org.nd4j.linalg.io.ClassPathResource;
+
+import java.io.IOException;
+import java.time.LocalTime;
 
 public class HumidityModel {
     private MultiLayerNetwork evaModel;
+    // Todo: setting data
     private final float maxSoilMoisture = 100;
     private final float minSoilMoisture = 0;
     private final float maxHumidity = 100;
@@ -23,7 +21,8 @@ public class HumidityModel {
     private final float maxTemperature = 50;
     private final float minTemperature = 10;
 
-    private final float increase_dSoilMoisture = 1.2F; //độ ẩm tăng sau khi tưới 1s nước: 0.4653F đo được
+    //độ ẩm tăng sau khi tưới 1s nước: 0.4653F đo được
+    private final float increase_dSoilMoisture = 1.2F;
     public HumidityModel(){
         // load the model
         try {
@@ -36,6 +35,7 @@ public class HumidityModel {
             e.printStackTrace();
         }
     }
+
 
     public float scaleMinMax(float minValue, float maxValue, float minRange, float maxRange, float value){
         return minRange+((value-minValue)*(maxRange-minRange))/(maxValue-minValue);

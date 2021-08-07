@@ -1,6 +1,5 @@
 package DAO;
 
-import model.Device;
 import model.DeviceType;
 
 import java.sql.ResultSet;

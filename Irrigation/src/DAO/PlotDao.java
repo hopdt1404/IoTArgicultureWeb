@@ -1,8 +1,6 @@
 package DAO;
 
-import model.Farm;
 import model.Plot;
-import model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

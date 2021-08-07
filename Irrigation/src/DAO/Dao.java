@@ -10,5 +10,6 @@ public interface Dao<T> {
     public T getById(int id);
     public int save(T t);
     public void update(T t_old, T t_new);
+//    public void update(T t_new);
     public void delete(long id);
 }

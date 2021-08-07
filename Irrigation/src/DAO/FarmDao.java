@@ -1,13 +1,12 @@
 package DAO;
 
-import model.Device;
 import model.Farm;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.lang.reflect.Array;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class FarmDao implements Dao<Farm> {
 
@@ -21,7 +20,7 @@ public class FarmDao implements Dao<Farm> {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()){
                 Farm farm = new Farm(resultSet.getInt("FarmID"),
-                        resultSet.getInt("LocateID"),
+                        resultSet.getString("LocateID"),
                         resultSet.getDouble("Area"),
                         resultSet.getInt("FarmTypeID"),
                         resultSet.getBoolean("Status"),
@@ -43,6 +42,73 @@ public class FarmDao implements Dao<Farm> {
         return farms;
     }
 
+    // Todo generate function latter
+    public List<Farm> getFarmByParams(Map<String, String> params) {
+        List<Farm> farms = new ArrayList<Farm>();
+        Connection connection = null;
+        try {
+            connection = dbConnector.getConnection();
+            String query = "select * from Farms";
+            System.out.println("params");
+            System.out.println(params);
+            if (!params.isEmpty()) {
+                String paramQuery = " where ";
+//                if (params.containsKey("st"))
+            }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return farms;
+    }
+    public List<Farm> getFarmByStatus(String status) {
+        List<Farm> farms = new ArrayList<Farm>();
+        Connection connection = null;
+        try {
+            connection = dbConnector.getConnection();
+//            String query = "select * from Farms where Status=?";
+            String query = "select * from Farms";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setString(1, status);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println("getFarmByStatus");
+            while (resultSet.next()){
+                Farm farm = new Farm(resultSet.getInt("FarmID"),
+                        resultSet.getString("LocateID"),
+                        resultSet.getDouble("Area"),
+                        resultSet.getInt("FarmTypeID"),
+                        resultSet.getBoolean("Status"),
+                        resultSet.getInt("UserID")
+                );
+                farms.add(farm);
+//                System.out.println(farm.toString());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return farms;
+    }
+
     @Override
     public Farm getById(int id) {
         Statement statement;
@@ -53,7 +119,29 @@ public class FarmDao implements Dao<Farm> {
             ResultSet resultSet=statement.executeQuery(sql);
             while(resultSet.next()){
                 farm = new Farm(resultSet.getInt("FarmID"),
-                        resultSet.getInt("LocateID"),
+                        resultSet.getString("LocateID"),
+                        resultSet.getDouble("Area"),
+                        resultSet.getInt("FarmTypeID"),
+                        resultSet.getBoolean("Status"),
+                        resultSet.getInt("UserID")
+                );
+            }
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return farm;
+    }
+    public Farm getById(Long id) {
+        Statement statement;
+        Farm farm = null;
+        try {
+            statement = dbConnector.getConnection().createStatement();
+            String sql = "select * from Farms where FarmID = "+id+";";
+            ResultSet resultSet=statement.executeQuery(sql);
+            while(resultSet.next()){
+                farm = new Farm(resultSet.getInt("FarmID"),
+                        resultSet.getString("LocateID"),
                         resultSet.getDouble("Area"),
                         resultSet.getInt("FarmTypeID"),
                         resultSet.getBoolean("Status"),

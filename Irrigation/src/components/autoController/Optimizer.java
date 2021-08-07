@@ -1,7 +1,5 @@
 package components.autoController;
 
-import model.WeatherForecast;
-
 public class Optimizer {
     int[] irrigationPeriodTimeLevel={0,1,2,3};
     float timeLevelSelected=0;
@@ -19,11 +17,11 @@ public class Optimizer {
         curDCU=dcu;
         curDCU.updateCurrentSoilMoisture();
         //trường hợp chuẩn bị có mưa sẽ không tưới cho cây
-        if(curDCU.getWeatherForecast().getWeatherForecastAtATimes().get(1).getRainValue()>80){
+        if(curDCU.getWeatherForecast().getWeatherForecastAtATimes().get(1).getRainValue() > 80){
             return;
         }
         //trong trường hợp độ ẩm đất lớn hơn ngưỡng trên
-        if(curDCU.getCurrentSoilMoisture()>curDCU.getUpperThreshold()){
+        if(curDCU.getCurrentSoilMoisture() > curDCU.getUpperThreshold()){
             return;
         }
 
@@ -41,10 +39,12 @@ public class Optimizer {
 //                System.out.println("Optimizer irrigationPeriodTime:" + irrigationPeriodTime);
                 curDCU.setIrrigationPeriodTime(irrigationPeriodTime);
                 try {
+                // Todo: sleep 1 minute ?
                     Thread.sleep(60000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                //  Todo: update độ ẩm đất sau khoảng thời gian t  (lấy thông tin từ device - sensor)
                 curDCU.updateCurrentSoilMoisture();
             }
         }

@@ -1,3 +1,4 @@
+import components.WeatherForecastCollector;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -5,8 +6,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.*;
-import java.io.*;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,7 +18,9 @@ public class TestWeatherAPI {
         Date datetime = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dt = ft.format(datetime);
-        String api_key = "LNrGryrjcdTBVNpPvJLCPWdg0lcZCQ4D";
+        // api key mr thang
+//        String api_key = "LNrGryrjcdTBVNpPvJLCPWdg0lcZCQ4D";
+        String api_key = "3DmZBJh3Vkm4n178sfIcY04z0aHugD28";
         String id_city = "353412"; // Ha noi dua vao location api on https://developer.accuweather.com/accuweather-locations-api/apis
         String api_url = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/" + id_city +"?apikey=" + api_key + "&language=en-us&details=true&metric=true";
         try{
@@ -61,6 +63,10 @@ public class TestWeatherAPI {
     }
 
     public static void main(String[] args) {
-        GetInfoWeather();
+
+        // Test get weatherForecast location with farm
+        WeatherForecastCollector weatherForecastCollector = new WeatherForecastCollector();
+        weatherForecastCollector.run();
+//        GetInfoWeather();
     }
 }

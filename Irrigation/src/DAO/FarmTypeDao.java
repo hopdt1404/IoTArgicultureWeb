@@ -1,6 +1,5 @@
 package DAO;
 
-import model.DeviceType;
 import model.FarmType;
 
 import java.sql.ResultSet;

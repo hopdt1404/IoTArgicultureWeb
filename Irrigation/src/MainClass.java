@@ -1,22 +1,17 @@
 import DAO.FarmDao;
-import DAO.PlotDao;
 import DAO.UserDao;
 import Utilities.Helper;
 import components.ControllingDataSender;
 import components.DataCollector;
-import components.WeatherForecastCollector;
-import components.autoController.MPC;
 import model.Farm;
-import model.Plot;
 import model.User;
 
 import java.sql.Timestamp;
 import java.time.LocalTime;
-import java.util.Calendar;
 
 public class MainClass {
     public static void main(String[] args) {
-        System.out.println("Version: "+1);
+        System.out.println("Version: " + "1.0.1");
         UserDao userDao = new UserDao();
         FarmDao farmDao = new FarmDao();
         if(userDao.getByUsernameAndPassword("admin","12345678")==null){

@@ -1,6 +1,5 @@
 package DAO;
 
-import model.FarmType;
 import model.PlotType;
 
 import java.sql.ResultSet;

@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class TestDAO {
@@ -21,13 +22,14 @@ public class TestDAO {
     }
     public static void main(String[] args) throws IOException, InterruptedException {
 //        testLocateDao1();
-        testUserDao();
+//        testUserDao();
 //        testFarmDao();
 //        testPlotDao();
 //        testDeviceTypeDao();
 //        testDeviceDao();
 //        testSensingDao();
 //        testWeatherForecastDao();
+        testForecastNew();
     }
 
     public static void testWeatherForecastDao(){
@@ -167,8 +169,20 @@ public class TestDAO {
     }
     public static void testDeviceDao(){
         DeviceDao deviceDao = new DeviceDao();
-        deviceDao.save(new Device(1L,1,"Sensor",true,1));
-        deviceDao.save(new Device(2L,2,"May bom",true,1));
+        int count = 5;
+        for (int i = 0; i < count; i++) {
+            Long deviceIdSelect = Long.valueOf(i) + 1;
+            Device deviceSelect = deviceDao.getById(deviceIdSelect);
+            System.out.println("deviceSelect");
+            System.out.println(deviceSelect);
+            Device deviceInsertOrUpdate = new Device(deviceIdSelect,1,("Sensor update" + i),1,1, 1L, 1L);
+            if (deviceSelect == null) {
+                deviceDao.save(deviceInsertOrUpdate);
+            } else {
+                deviceDao.update(deviceSelect, deviceInsertOrUpdate);
+            }
+
+        }
         List<Device> devices = deviceDao.getAll();
         for(Device d:devices){
             System.out.println(d.toString());
@@ -184,6 +198,25 @@ public class TestDAO {
         for(Sensing s:sensings){
             System.out.println(s.toString());
         }
+    }
+
+    public static void testForecastNew() {
+//        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//        WeatherForCastNew weatherForCastNew = new WeatherForCastNew(
+//                1L, "LocateID", timestamp, 2,
+//                "status", 1, 2D, 2D,
+//                2D, 1, 1, 3D, 13,
+//                timestamp, null
+//        );
+//        WeatherForecastNewDao weatherForecastNewDao = new WeatherForecastNewDao();
+////        weatherForecastNewDao.save(weatherForCastNew);
+//        WeatherForCastNew weatherForCastNew2 = new WeatherForCastNew(
+//                1L, "LocateID", new Timestamp("2021-08-15 07:13:11"), 2,
+//                "status", 1, 2D, 2D,
+//                2D, 1, 1, 3D, 13,
+//                timestamp, timestamp
+//        );
+//        weatherForecastNewDao.update(weatherForCastNew, weatherForCastNew2);
     }
 
 }

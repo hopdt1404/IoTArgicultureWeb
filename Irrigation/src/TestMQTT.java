@@ -1,20 +1,16 @@
-import Connector.DBConnector;
 import Connector.MQTTConnector;
 import DAO.*;
 import Utilities.Helper;
-import com.google.gson.JsonObject;
-
 import model.*;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class TestMQTT {
     private static String host=null;
@@ -179,7 +175,7 @@ public class TestMQTT {
         }else return;
 
         DeviceDao deviceDao = new DeviceDao();
-        deviceDao.save(new Device(deviceId,null,null,true,null));
+        deviceDao.save(new Device(deviceId,null,null,0,null));
     }
 
     public static void notifyGatewayOffline(MqttMessage mqttMessage){
@@ -191,7 +187,7 @@ public class TestMQTT {
         for(Device device: devices){
             System.out.println("deviceID offline: "+device.getDeviceID());
             Device newDevice = new Device(device);
-            newDevice.setStatus(Boolean.FALSE);
+            newDevice.setStatus(0);
             deviceDao.update(device,newDevice);
         }
         FarmDao farmDao = new FarmDao();
@@ -224,7 +220,7 @@ public class TestMQTT {
         DeviceDao deviceDao = new DeviceDao();
         Device oldDevice = deviceDao.getById(deviceId.intValue());
         Device newDevice = new Device(oldDevice);
-        newDevice.setStatus(Boolean.FALSE);
+        newDevice.setStatus(0);
         deviceDao.update(oldDevice,newDevice);
     }
 
@@ -236,7 +232,7 @@ public class TestMQTT {
             System.out.println("deviceID offline: "+(Long)deviceId);
             Device oldDevice = deviceDao.getById((Long)deviceId);
             Device newDevice = new Device(oldDevice);
-            newDevice.setStatus(Boolean.FALSE);
+            newDevice.setStatus(0);
             deviceDao.update(oldDevice,newDevice);
         }
     }
@@ -282,13 +278,13 @@ public class TestMQTT {
                         if(isEqual==Boolean.TRUE) break;
                         System.out.println("PlotId don't exist! Retry!");
                     } while (Boolean.TRUE);
-                    deviceDao.save(new Device(finalDeviceId, null, null, Boolean.TRUE, plotId));
+                    deviceDao.save(new Device(finalDeviceId, null, null, 1, plotId));
                 }
             });
             thread.start();
         }else{
             Device newDevice = new Device(device);
-            newDevice.setStatus(Boolean.TRUE);
+            newDevice.setStatus(0);
             deviceDao.update(device,newDevice);
         }
 

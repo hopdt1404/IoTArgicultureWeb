@@ -1,10 +1,12 @@
 package model;
 
-import java.util.Date;
+
+import java.sql.Date;
+import java.sql.Timestamp;
 
 public class WeatherForecastAtATime{
     private Integer weatherForecastId;
-    private Date dateTime;
+    private Timestamp dateTime;
     private Long epochDataTime;
     private String forecastStatus;
     private Boolean isDaylight;
@@ -15,11 +17,26 @@ public class WeatherForecastAtATime{
     private Byte precipitationProbability;
     private Float rainValue;
     private Byte cloudCover;
+    private Timestamp created_at;
+    private Timestamp updated_at;
 
     public WeatherForecastAtATime() {
     }
 
-    public WeatherForecastAtATime(Integer weatherForecastId, Date dateTime, Long epochDataTime, String forecastStatus, Boolean isDaylight, Float temperature, Float windSpeed, Float relativeHumidity, Byte rainProbability, Byte precipitationProbability, Float rainValue, Byte cloudCover) {
+    public WeatherForecastAtATime(Integer weatherForecastId,
+                                  Timestamp dateTime,
+                                  Long epochDataTime,
+                                  String forecastStatus,
+                                  Boolean isDaylight,
+                                  Float temperature,
+                                  Float windSpeed,
+                                  Float relativeHumidity,
+                                  Byte rainProbability,
+                                  Byte precipitationProbability,
+                                  Float rainValue,
+                                  Byte cloudCover,
+                                  Timestamp created_at,
+                                  Timestamp updated_at) {
         this.weatherForecastId = weatherForecastId;
         this.dateTime = dateTime;
         this.epochDataTime = epochDataTime;
@@ -32,6 +49,9 @@ public class WeatherForecastAtATime{
         this.precipitationProbability = precipitationProbability;
         this.rainValue = rainValue;
         this.cloudCover = cloudCover;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+
     }
 
 //    public WeatherForecastAtATime(Date dateTime, Long epochDataTime, String forecastStatus, Boolean isDaylight, Float temperature, Float windSpeed, Float relativeHumidity, Byte rainProbability, Byte precipitationProbability, Float rainValue, Byte cloudCover) {
@@ -68,7 +88,7 @@ public class WeatherForecastAtATime{
         return weatherForecastId;
     }
 
-    public Date getDateTime() {
+    public Timestamp getDateTime() {
         return dateTime;
     }
 
@@ -115,7 +135,7 @@ public class WeatherForecastAtATime{
     public void setWeatherForecastId(Integer weatherForecastId) {
         this.weatherForecastId = weatherForecastId;
     }
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
     }
     public void setEpochDataTime(Long epochDataTime) {
@@ -147,6 +167,19 @@ public class WeatherForecastAtATime{
     }
     public void setCloudCover(Byte cloudCover) {
         this.cloudCover = cloudCover;
+    }
+    public Timestamp getCreatedAt ()
+    {
+        return this.created_at;
+    }
+    public void setCreatedAt(Timestamp created_at) {
+        this.created_at = created_at;
+    }
+    public Timestamp getUpdatedAt () {
+        return this.updated_at;
+    }
+    public void setUpdatedAt(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
 }

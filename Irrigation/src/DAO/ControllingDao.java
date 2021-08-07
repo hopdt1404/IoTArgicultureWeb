@@ -1,7 +1,6 @@
 package DAO;
 
 import model.Controlling;
-import model.Forecast;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

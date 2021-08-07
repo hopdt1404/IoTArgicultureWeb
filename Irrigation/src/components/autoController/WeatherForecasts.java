@@ -2,11 +2,9 @@ package components.autoController;
 
 import DAO.LocateDao;
 import DAO.WeatherForecastDao;
-import model.Forecast;
 import model.Locate;
 import model.WeatherForecast;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class WeatherForecasts {
